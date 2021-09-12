@@ -1,0 +1,30 @@
+{
+  "name": "museum",
+  "version": "1.0.0",
+  "description": "museum application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/nnadeysha-JSFE2021Q3.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "museum",
+    "webpack"
+  ],
+  "author": "nnadeysha <nadeysha@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/nnadeysha-JSFE2021Q3/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/nnadeysha-JSFE2021Q3#readme",
+  "devDependencies": {
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
