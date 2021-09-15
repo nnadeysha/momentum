@@ -26,14 +26,16 @@ import next from './assets/next.svg';
 import pause from './assets/pause.svg';
 import pinterest from './assets/pinterest.svg';
 import playinvideo from './assets/playinvideo.svg';
+
 import plus from './assets/plus.svg';
 import rectangle from './assets/rectangle.svg';
 import scale from './assets/scale.svg';
 import twitter from './assets/twitter.svg';
 import volume from './assets/volume.svg';
-
+import youtube from './assets/youtube.svg'
 import mute from './assets/mute.svg';
 import play from './assets/play.svg';
+
 
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -48,18 +50,17 @@ progressVolume.addEventListener('input', function() {
     this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
   })
   
+/* 
 
-
-  /* const video = document.querySelector('.video');
+const video = document.querySelector('.video');
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
 const playBtn = document.querySelector('.video-play');
 const playBigBtn = document.querySelector('.video-play-big-btn');
 const wrappOfBtnPlay = document.querySelector('.button-control');
 const time = document.querySelector('.control-time');
-const mute = document.querySelector('.volume-icon') */
+const mute = document.querySelector('.volume-icon') 
 
-  
 //progress volume
 
 progressVolume.oninput = videoVolume;
@@ -159,3 +160,4 @@ video.addEventListener('pause', updateToggle);
 video.addEventListener('timeupdate', updateProgress);
 progress.addEventListener9('change', setProgress);
 
+ */

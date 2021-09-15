@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/styles.css" />
   <link rel="icon" href="assets/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="./styles/styles.css">
   <title>Museum</title>
 </head>
 <body>
@@ -58,9 +57,6 @@
           <p class="welcome-text">From the castle to the museum</p>
             
            <button type="button" class="welcome-button">Discover the Louvre</button>
-              
-          
-        
         </div>
       </div> 
       </div>
@@ -127,26 +123,32 @@
             <p class="explore-subtext">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
           </div>
         </div>
-        <div class="explore-image">
-          <img src="./assets/explorer.jpg" alt="Explore">
+        <div >
+          <img class="explore-image" src="./assets/explorer.jpg" alt="Explore">
         </div>
       </div>
     </section>
     <section class="section video-section" id="video">
       <div class="container">
-        <div class="video-view">
-          <video class="video" poster="./assets/img/poster.jpg">
-          </video>
-          <div class="video-content">
-            <img src="./assets/playinvideo.svg" alt="button play">
-          </div>
+        <div class="video-description">
+          <div class="video-title"><h2 class="section-title">Video journey</h2></div>
+          <div>
+            <p class="video-description-text">Enter and visit one of the most famous museums 
+              in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
+            </div>
         </div>
+        <div class="video-view">
+          <video class="video" >
+          
+          
+            <button class="video-big-button"></button>
+          </video>
+          </div>
+        
         
         <div class="video-controls">
           <div class="button-control">
-            <button class="video-back"></button>
             <button class="video-play"></button>
-            <button class="video-next"></button>
           </div>
           <div class="progress-video">
             <input type="range" value="46" min="0" max="100" step="1" class="progress">
@@ -159,19 +161,17 @@
           </div>
           <button class="scale-icon"></button>
         </div>
-        <div class="video-description">
-          <div class="video-title"><h2 class="section-title">Video journey</h2></div>
-          <div><p class="video-description-text">Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p></div>
-        </div>
+        
       </div>
+    
     </section>
     <section class="section dark-section" id="tickets">
       <div class="container">
         <h2 class="section-title-dark">Buy tickets</h2>
           <div class="underline-title"></div>
           <div class="tickets-content">
-            <div class="tickets-image">
-              <img src="./assets/ticketimage.jpg" alt="picture">
+            <div >
+              <img class="tickets-image" src="./assets/ticketimage.jpg" alt="picture">
             </div>
             <div class="tickets-buy">
               <div class="exposition">
@@ -222,12 +222,9 @@
                   <button class="buy-button"><span>Buy Now</span></button>
                 </div>
               </div>
-                
               </div>
             </div>
           </div>
-          
-
     </section>
     <section class="section" id="contacts">
       <div class="container">
@@ -243,15 +240,15 @@
               <span>mail: info@louvre.fr</span>
             </p>
           </div>
-          <div class="map">
-            <img src="./assets/map.png" alt="map">
+          <div>
+            <img class="map" src="./assets/map.png" alt="map">
           </div>
         </div>
       </div>
     </section>
   </main>
   <footer class="footer">
-    <div class="container">
+    <div class="container footer-container">
       <div class="footer-wrapper">
         <div class="footer-left">
           <div class="icon">
@@ -260,13 +257,13 @@
           <div class="footer-navigation">
             <nav>
               <ul class="footer-navigation">
-                <li class="link">
+                <li class="link ">
                   <a href="#visiting">Welcome</a>
                 </li>
-                <li class="link">
+                <li class="link ">
                   <a href="#visiting">Visiting</a>
                 </li>
-                <li class="link">
+                <li class="link ">
                   <a href="#explore">Explore</a>
                 </li>
                 <li class="link">
@@ -284,23 +281,25 @@
         </div>
         <div class="social-nets">
           <ul class="social-navigation">
-            <li class="social-link">
-              <img src="./assets/youtube.svg" alt="Youtube">
-              <a href="#"></a>
+            <li class="social-link link-padding">
+              <a class="youtube" target="_blank" href="https://www.youtube.com/user/louvre">
+                <img src="./assets/youtube.svg" alt="Instagram">
+              </a>
             </li>
-            <li class="social-link">
+            <li class="social-link link-padding">
               <img src="./assets/instagram.svg" alt="Instagram">
               <a href="#"></a>
             </li>
-            <li class="social-link">
+            <li class="social-link link-padding">
               <img src="./assets/facebook.svg" alt="Facebook">
               <a href="#"></a>
             </li>
-            <li class="social-link">
+            <li class="social-link link-padding">
               <img src="./assets/twitter.svg" alt="Twitter">
               <a href="#"></a>
             </li>
-            <li class="social-link">
+            <li class="social-link ">
+            
               <img src="./assets/pinterest.svg" alt="Pinterest">
               <a href="#"></a>
             </li>
@@ -309,6 +308,9 @@
       </div>
     </div>
   </footer>
- 
 </body>
 </html>
+
+<div class="container">
+  <ol></ol>
+</div>
