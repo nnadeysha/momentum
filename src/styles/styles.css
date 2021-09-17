@@ -225,6 +225,24 @@ span {
 max-width: 1000px;
 width: 100%;
 height: auto;
+position: relative;
+}
+
+.w-slide::before,
+.w-slide::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+}
+
+.w-slide::before {
+width: 100px;
+height: 100%;
+max-height: 750px;
+
+/* -webkit-box-shadow: 58px 0px 31px -1px rgba(0, 0, 0, 0.77) inset;
+-moz-box-shadow: 58px 0px 31px -1px rgba(0, 0, 0, 0.77) inset; */
+box-shadow: 40px 0px 28px -15px rgba(0,0,0,.9) inset;
 }
 
 .w-slide-img-hidden {
