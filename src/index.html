@@ -77,9 +77,22 @@
           <div class="w-slide w-slide5">
             <img class="w-slide-img w-slide-img-hidden" src="./assets/wslider5.jpg" alt="">
           </div>
-          <div class="welcome-slider-dots">
-            <div class="arrow">
-              
+          <div class="welcome-slider-progress">
+            <div class="progress-counting">
+              <span class="progress-counting-variable">01</span>
+              <span class="progress-counting-line">|</span>
+              <span>05</span>
+            </div>
+            <div class="progress-dots">
+              <div class="dot active-dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="arrows">
+              <button class="arrow-left"></button>
+              <button class="arrow-right"></button>
             </div>
           </div>
         </div>
@@ -159,32 +172,33 @@
           <div class="video-title"><h2 class="section-title">Video journey</h2></div>
           <div>
             <p class="video-description-text">Enter and visit one of the most famous museums 
-              in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
-            </div>
+              in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code
+            </p>
+          </div>
         </div>
         <div class="video-player">
-        <div class="video-poster">
-          <video class="video" src="#" poster="./assets/poster.jpg"></video>
-          <button class="video-button"></button>
+          <div class="video-poster">
+            <video class="video" src="#" poster="./assets/poster.jpg"></video>
+            <button class="video-button"></button>
+          </div>
+          <div class="video-controls">
+            <div class="button-control">
+              <button class="video-play"></button>
+            </div>
+            <div class="progress-video">
+              <input type="range" value="46" min="0" max="100" step="1" class="progress">
+            </div>
+            <div class="volume">
+              <button class="volume-icon"></button>
+            <div>
+              <input type="range" value="46" min="0" max="100" step="1" class="progress-volume">
+            </div>
+            </div>
+            <button class="scale-icon"></button>
+          </div>
         </div>
-          
-        <div class="video-controls">
-          <div class="button-control">
-            <button class="video-play"></button>
-          </div>
-          <div class="progress-video">
-            <input type="range" value="46" min="0" max="100" step="1" class="progress">
-          </div>
-          <div class="volume">
-            <button class="volume-icon"></button>
-          <div>
-            <input type="range" value="46" min="0" max="100" step="1" class="progress-volume">
-          </div>
-          </div>
-          <button class="scale-icon"></button>
-        </div>
+        <div class="video-gallery"></div>
       </div>
-    </div>
     </section>
     <section class="section dark-section" id="tickets">
       <div class="container">

@@ -13,7 +13,7 @@ import poster from './assets/poster.jpg';
 import rectangle6 from './assets/rectangle6.jpg';
 import ticketimage from './assets/ticketimage.jpg';
 //svg
-import back from './assets/back.svg';
+
 import button from './assets/button.jpg';
 import ellipse2 from './assets/ellipse2.png';
 import facebook from './assets/facebook.svg';
@@ -26,27 +26,16 @@ import next from './assets/next.svg';
 import pause from './assets/pause.svg';
 import pinterest from './assets/pinterest.svg';
 import playinvideo from './assets/playinvideo.svg';
-<<<<<<< HEAD
-
-=======
->>>>>>> ccd4a71684ec7d87d00468f7a5beca7f3542dd33
 import plus from './assets/plus.svg';
 import rectangle from './assets/rectangle.svg';
 import scale from './assets/scale.svg';
 import twitter from './assets/twitter.svg';
 import volume from './assets/volume.svg';
-<<<<<<< HEAD
 import youtube from './assets/youtube.svg'
 import mute from './assets/mute.svg';
 import play from './assets/play.svg';
 
-
-=======
-
-import mute from './assets/mute.svg';
-import play from './assets/play.svg';
-
->>>>>>> ccd4a71684ec7d87d00468f7a5beca7f3542dd33
+//welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
   
@@ -60,29 +49,17 @@ progressVolume.addEventListener('input', function() {
     this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
   })
   
-<<<<<<< HEAD
 /* 
 
 const video = document.querySelector('.video');
-=======
-
-
-  /* const video = document.querySelector('.video');
->>>>>>> ccd4a71684ec7d87d00468f7a5beca7f3542dd33
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
 const playBtn = document.querySelector('.video-play');
 const playBigBtn = document.querySelector('.video-play-big-btn');
 const wrappOfBtnPlay = document.querySelector('.button-control');
 const time = document.querySelector('.control-time');
-<<<<<<< HEAD
 const mute = document.querySelector('.volume-icon') 
 
-=======
-const mute = document.querySelector('.volume-icon') */
-
-  
->>>>>>> ccd4a71684ec7d87d00468f7a5beca7f3542dd33
 //progress volume
 
 progressVolume.oninput = videoVolume;
@@ -182,7 +159,4 @@ video.addEventListener('pause', updateToggle);
 video.addEventListener('timeupdate', updateProgress);
 progress.addEventListener9('change', setProgress);
 
-<<<<<<< HEAD
  */
-=======
->>>>>>> ccd4a71684ec7d87d00468f7a5beca7f3542dd33
