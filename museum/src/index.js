@@ -1,5 +1,5 @@
-import './style.css';
-//img
+
+/* //img
 import card1 from './images/card1.jpg';
 import card2 from './images/card2.jpg';
 import card3 from './images/card3.jpg';
@@ -33,22 +33,85 @@ import twitter from './images/twitter.svg';
 import volume from './images/volume.svg';
 import youtube from './images/youtube.svg'
 import mute from './images/mute.svg';
-import play from './images/play.svg';
+import play from './images/play.svg'; */
 
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
-  
+const buyBtn = document.querySelector('.buy-button');
+const closeBtn = document.querySelector('.form-close-button');
+const form = document.querySelector('.form-wrapper');
+const overlay = document.querySelector('.overlay');
+const bookBtn = document.querySelector('.booking-button')
+
+
+
+
+
 progress.addEventListener('input', function() {
   const value = this.value;
-  this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
+  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
 })
 
 progressVolume.addEventListener('input', function() {
     const value = this.value;
-    this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
+    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
   })
   
+
+  let ripple;
+  buyBtn.addEventListener('click', e => {
+    const left = e.clientX - e.target.getBoundingClientRect().left;
+    const top = e.clientY - e.target.getBoundingClientRect().top;
+    
+
+    ripple = document.createElement('div');
+    ripple.classList.add("ripple")
+    ripple.style.left = `${left}px`;
+    ripple.style.top = `${top}px`;
+    buyBtn.prepend(ripple);
+  });
+
+  buyBtn.addEventListener('mouseleave', () => {
+    buyBtn.removeChild(ripple)
+  })
+  function show()
+	{
+    buyBtn.addEventListener('click', () => {
+      form.style.display = 'block';	
+      overlay.style.display = 'block'; 
+    })
+	};
+function close() {
+  closeBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none'; 
+  })
+  bookBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none'; 
+  })
+  
+}
+
+  
+show();
+close();
+ /*  buyBtn.forEach(element => {
+    element.addEventListener('click', function(e) {
+      let x = e.clientX - e.target.offsetLeft;
+      let y = e.clientY - e.target.offsetTop;
+  
+      let ripples = document.createElement('span');
+      console.log(ripples)
+      ripples.style.left = x + 'px';
+      ripples.style.top = y + 'px';
+      this.appendChild(ripples);
+      
+    })
+  }) */
+
+
 /* 
 
 const video = document.querySelector('.video');
