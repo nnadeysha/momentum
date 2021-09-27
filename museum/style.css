@@ -1151,14 +1151,18 @@ input::-webkit-inner-spin-button {
 input[type=text],
 input[type=email],
 input[type=tel],
-.input-number
+.input-number,
+#name
 
  {
    font-size: 18px;
   width: 356px;
-  height: 42px;
+  min-height: 42px;
   margin-top: 19px;
   
+}
+.form-left {
+  height: 663px;
 }
 .form-title-mini {
   font-family: Forum;
