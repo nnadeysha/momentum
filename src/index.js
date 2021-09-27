@@ -1,54 +1,117 @@
-import './styles/styles.css';
-//img
-import card1 from './assets/card1.jpg';
-import card2 from './assets/card2.jpg';
-import card3 from './assets/card3.jpg';
-import card4 from './assets/card4.jpg';
-import card5 from './assets/card5.jpg';
-import card6 from './assets/card6.jpg';
-import explorer from './assets/explorer.jpg';
-import louvre from './assets/louvre.jpg';
-import map from './assets/map.png';
-import poster from './assets/poster.jpg';
-import rectangle6 from './assets/rectangle6.jpg';
-import ticketimage from './assets/ticketimage.jpg';
+
+/* //img
+import card1 from './images/card1.jpg';
+import card2 from './images/card2.jpg';
+import card3 from './images/card3.jpg';
+import card4 from './images/card4.jpg';
+import card5 from './images/card5.jpg';
+import card6 from './images/card6.jpg';
+import explorer from './images/explorer.jpg';
+import louvre from './images/louvre.jpg';
+import map from './images/map.png';
+import poster from './images/poster.jpg';
+import rectangle6 from './images/rectangle6.jpg';
+import ticketimage from './images/ticketimage.jpg';
 //svg
 
-import button from './assets/button.jpg';
-import ellipse2 from './assets/ellipse2.png';
-import facebook from './assets/facebook.svg';
-import fullscreen_exit from './assets/fullscreen_exit.svg';
-import group from './assets/group.svg';
-import Instagram from './assets/Instagram.svg';
-import logo from './assets/logo.svg';
-import minus from './assets/minus.svg';
-import next from './assets/next.svg';
-import pause from './assets/pause.svg';
-import pinterest from './assets/pinterest.svg';
-import playinvideo from './assets/playinvideo.svg';
-import plus from './assets/plus.svg';
-import rectangle from './assets/rectangle.svg';
-import scale from './assets/scale.svg';
-import twitter from './assets/twitter.svg';
-import volume from './assets/volume.svg';
-import youtube from './assets/youtube.svg'
-import mute from './assets/mute.svg';
-import play from './assets/play.svg';
+import button from './images/button.jpg';
+import ellipse2 from './images/ellipse2.png';
+import facebook from './images/facebook.svg';
+import fullscreen_exit from './images/fullscreen_exit.svg';
+import group from './images/group.svg';
+import Instagram from './images/Instagram.svg';
+import logo from './images/logo.svg';
+import minus from './images/minus.svg';
+import next from './images/next.svg';
+import pause from './images/pause.svg';
+import pinterest from './images/pinterest.svg';
+import playinvideo from './images/playinvideo.svg';
+import plus from './images/plus.svg';
+import rectangle from './images/rectangle.svg';
+import scale from './images/scale.svg';
+import twitter from './images/twitter.svg';
+import volume from './images/volume.svg';
+import youtube from './images/youtube.svg'
+import mute from './images/mute.svg';
+import play from './images/play.svg'; */
 
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
-  
+const buyBtn = document.querySelector('.buy-button');
+const closeBtn = document.querySelector('.form-close-button');
+const form = document.querySelector('.form-wrapper');
+const overlay = document.querySelector('.overlay');
+const bookBtn = document.querySelector('.booking-button')
+
+
+
+
+
 progress.addEventListener('input', function() {
   const value = this.value;
-  this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
+  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
 })
 
 progressVolume.addEventListener('input', function() {
     const value = this.value;
-    this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, grey 100%)`
+    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
   })
   
+
+  let ripple;
+  buyBtn.addEventListener('click', e => {
+    const left = e.clientX - e.target.getBoundingClientRect().left;
+    const top = e.clientY - e.target.getBoundingClientRect().top;
+    
+
+    ripple = document.createElement('div');
+    ripple.classList.add("ripple")
+    ripple.style.left = `${left}px`;
+    ripple.style.top = `${top}px`;
+    buyBtn.prepend(ripple);
+  });
+
+  buyBtn.addEventListener('mouseleave', () => {
+    buyBtn.removeChild(ripple)
+  })
+  function show()
+	{
+    buyBtn.addEventListener('click', () => {
+      form.style.display = 'block';	
+      overlay.style.display = 'block'; 
+    })
+	};
+function close() {
+  closeBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none'; 
+  })
+  bookBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none'; 
+  })
+  
+}
+
+  
+show();
+close();
+ /*  buyBtn.forEach(element => {
+    element.addEventListener('click', function(e) {
+      let x = e.clientX - e.target.offsetLeft;
+      let y = e.clientY - e.target.offsetTop;
+  
+      let ripples = document.createElement('span');
+      console.log(ripples)
+      ripples.style.left = x + 'px';
+      ripples.style.top = y + 'px';
+      this.appendChild(ripples);
+      
+    })
+  }) */
+
+
 /* 
 
 const video = document.querySelector('.video');
@@ -67,9 +130,9 @@ function videoVolume() {
 video.volume = this.value/100;
 
 if(video.volume > 0){
-  mute.style.backgroundImage = "url(./assets/svg/btn-volume.svg)";
+  mute.style.backgroundImage = "url(./images/svg/btn-volume.svg)";
 } else {
-  mute.style.backgroundImage = "url(./assets/svg/mute.svg)";
+  mute.style.backgroundImage = "url(./images/svg/mute.svg)";
 }
   const value = this.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
@@ -109,10 +172,10 @@ function setProgress() {
 playBtn.onclick = updateToggle;
   function updateToggle() {
     if (video.paused) {
-     playBtn.style.backgroundImage = "url(./assets/svg/btn-play-mini.svg)";
+     playBtn.style.backgroundImage = "url(./images/svg/btn-play-mini.svg)";
      playBigBtn.style.display = 'block';
     } else if (video.play) {
-      playBtn.style.backgroundImage = "url(./assets/svg/pause.svg)";
+      playBtn.style.backgroundImage = "url(./images/svg/pause.svg)";
       playBigBtn.style.display = 'none';
       
     }
