@@ -108,7 +108,7 @@ header {
   align-items: center;
   
   justify-content: space-between;
-  padding-top: 80px;
+  padding-top: 55px;
   padding-bottom: 50px;
  
 }
@@ -1044,9 +1044,6 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.buy-button span {
   position: relative;
   color: #fff;
   font-family: Roboto;
@@ -1056,6 +1053,19 @@ input::-webkit-inner-spin-button {
   line-height: 26px;
   letter-spacing: 2px;
   transition: linear .5s;
+}
+
+.booking-button span {
+  position: relative;
+  color: #fff;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  transition: linear .5s;
+  
 }
  .ripple {
   position: absolute;
@@ -1398,6 +1408,8 @@ margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 .booking-button span {
   font-family: Roboto;
@@ -1601,7 +1613,7 @@ input[type=time] {
 .parallax {
   background-image: url(./images/parallax.jpg);
   margin:0 auto;
-  max-width: 1920px;
+  max-width: 100%;
   height:400px;
   background-size: cover;
   background-attachment: fixed;
