@@ -250,7 +250,9 @@ box-shadow: 40px 0px 28px -15px rgba(0,0,0,.9) inset;
 .w-slide-img-hidden {
   display: none;
 }
-
+.w-slide-img {
+  margin-right: 40px;
+}
 
 .welcome-slider-progress {
   background-color: #000;
@@ -606,7 +608,7 @@ text-align: left;
 }
 
 .progress {
-  background: linear-gradient(to right, #710707 0%, #710707 46%, #C4C4C4 46%, #C4C4C4 100%);
+  background: linear-gradient(to right, #710707 0%, #710707 54%, #C4C4C4 54%, #C4C4C4 100%);
   height: 8px;
   background-size: cover;
   width: 58rem;
@@ -790,20 +792,17 @@ padding-top: 7px;
   margin-top: 75px;
 }
 
-.art-image{
+.flex-inner-gallery > img{
   
-  max-width: 31.5%;
+  width: 456px;;
   
   height: auto;
 }
 
-.art-image:first-child{
-  padding-top: 50px;
+.flex-inner-gallery > img:nth-child(1),
+.flex-inner-gallery > img:nth-child(11) {
+	padding-top: 50px;
 }
-.art-image:nth-child(11){
-  padding-top: 50px;
-}
-
 .gradient{
   position: absolute;
   bottom:0px;
@@ -1096,7 +1095,7 @@ input::-webkit-inner-spin-button {
   width: 100vw;
   max-height: 845px;
   height: 100vh;
-  margin-left: 2.5%;
+  margin-left: 3.5%;
   margin-right: 2.5%;
   background: #fff;
   display: flex;
@@ -1107,7 +1106,7 @@ input::-webkit-inner-spin-button {
   overflow: hidden;
   top: 0;
   left: 0;
-  transition: .5s;
+  transition: .8s;
 }
 .active {
   transform: translateX(0%);
