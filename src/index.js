@@ -1,40 +1,4 @@
 
-/* //img
-import card1 from './images/card1.jpg';
-import card2 from './images/card2.jpg';
-import card3 from './images/card3.jpg';
-import card4 from './images/card4.jpg';
-import card5 from './images/card5.jpg';
-import card6 from './images/card6.jpg';
-import explorer from './images/explorer.jpg';
-import louvre from './images/louvre.jpg';
-import map from './images/map.png';
-import poster from './images/poster.jpg';
-import rectangle6 from './images/rectangle6.jpg';
-import ticketimage from './images/ticketimage.jpg';
-//svg
-
-import button from './images/button.jpg';
-import ellipse2 from './images/ellipse2.png';
-import facebook from './images/facebook.svg';
-import fullscreen_exit from './images/fullscreen_exit.svg';
-import group from './images/group.svg';
-import Instagram from './images/Instagram.svg';
-import logo from './images/logo.svg';
-import minus from './images/minus.svg';
-import next from './images/next.svg';
-import pause from './images/pause.svg';
-import pinterest from './images/pinterest.svg';
-import playinvideo from './images/playinvideo.svg';
-import plus from './images/plus.svg';
-import rectangle from './images/rectangle.svg';
-import scale from './images/scale.svg';
-import twitter from './images/twitter.svg';
-import volume from './images/volume.svg';
-import youtube from './images/youtube.svg'
-import mute from './images/mute.svg';
-import play from './images/play.svg'; */
-
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -58,9 +22,25 @@ progressVolume.addEventListener('input', function() {
     this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
   })
   
-
+  function show()
+	{
+    buyBtn.addEventListener('click', () => {
+      form.classList.toggle('active');
+       
+      overlay.style.display = 'block'; 
+    })
+	};
+function close() {
+  closeBtn.addEventListener('click', () => {
+    form.classList.remove('active');
+    overlay.style.display = 'none'; 
+  })
+  
+} 
+show();
+close();
   let ripple;
-  buyBtn.addEventListener('click', e => {
+  bookBtn.addEventListener('click', e => {
     const left = e.clientX - e.target.getBoundingClientRect().left;
     const top = e.clientY - e.target.getBoundingClientRect().top;
     
@@ -69,34 +49,39 @@ progressVolume.addEventListener('input', function() {
     ripple.classList.add("ripple")
     ripple.style.left = `${left}px`;
     ripple.style.top = `${top}px`;
-    buyBtn.prepend(ripple);
+    bookBtn.prepend(ripple);
   });
 
-  buyBtn.addEventListener('mouseleave', () => {
-    buyBtn.removeChild(ripple)
-  })
-  function show()
-	{
-    buyBtn.addEventListener('click', () => {
-      form.style.display = 'block';	
-      overlay.style.display = 'block'; 
-    })
-	};
-function close() {
-  closeBtn.addEventListener('click', () => {
-    form.style.display = 'none';
-    overlay.style.display = 'none'; 
-  })
-  bookBtn.addEventListener('click', () => {
-    form.style.display = 'none';
-    overlay.style.display = 'none'; 
+  bookBtn.addEventListener('mouseleave', () => {
+   bookBtn.removeChild(ripple)
   })
   
+
+  const galleryImgContainer = document.querySelector('.flex-inner-gallery');
+
+let images = [];
+for (let i = 1; i < 16; i++) {
+	image = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
+	images.push(image)
 }
 
-  
-show();
-close();
+let i = 0, arr = [], temp;
+
+while (arr.length < 15) {
+	temp = Math.trunc(Math.random() * 15 + 1);
+	if (!arr.includes(temp)) {
+		arr.push(temp);
+	};
+}
+let randomImages = [];
+for (let i = 0; i < 15; i++) {
+	randomImages.push(images[arr[i] - 1])
+}
+
+galleryImgContainer.innerHTML = randomImages.join('');
+
+
+
  /*  buyBtn.forEach(element => {
     element.addEventListener('click', function(e) {
       let x = e.clientX - e.target.offsetLeft;

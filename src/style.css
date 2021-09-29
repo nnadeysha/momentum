@@ -108,7 +108,7 @@ header {
   align-items: center;
   
   justify-content: space-between;
-  padding-top: 80px;
+  padding-top: 55px;
   padding-bottom: 50px;
  
 }
@@ -250,7 +250,9 @@ box-shadow: 40px 0px 28px -15px rgba(0,0,0,.9) inset;
 .w-slide-img-hidden {
   display: none;
 }
-
+.w-slide-img {
+  margin-right: 40px;
+}
 
 .welcome-slider-progress {
   background-color: #000;
@@ -606,7 +608,7 @@ text-align: left;
 }
 
 .progress {
-  background: linear-gradient(to right, #710707 0%, #710707 46%, #C4C4C4 46%, #C4C4C4 100%);
+  background: linear-gradient(to right, #710707 0%, #710707 54%, #C4C4C4 54%, #C4C4C4 100%);
   height: 8px;
   background-size: cover;
   width: 58rem;
@@ -790,20 +792,17 @@ padding-top: 7px;
   margin-top: 75px;
 }
 
-.art-image{
+.flex-inner-gallery > img{
   
-  max-width: 31.5%;
+  width: 456px;;
   
   height: auto;
 }
 
-.art-image:first-child{
-  padding-top: 50px;
+.flex-inner-gallery > img:nth-child(1),
+.flex-inner-gallery > img:nth-child(11) {
+	padding-top: 50px;
 }
-.art-image:nth-child(11){
-  padding-top: 50px;
-}
-
 .gradient{
   position: absolute;
   bottom:0px;
@@ -1045,9 +1044,6 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-}
-
-.buy-button span {
   position: relative;
   color: #fff;
   font-family: Roboto;
@@ -1057,6 +1053,19 @@ input::-webkit-inner-spin-button {
   line-height: 26px;
   letter-spacing: 2px;
   transition: linear .5s;
+}
+
+.booking-button span {
+  position: relative;
+  color: #fff;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  transition: linear .5s;
+  
 }
  .ripple {
   position: absolute;
@@ -1093,19 +1102,25 @@ input::-webkit-inner-spin-button {
 .form-wrapper {
   z-index: 150;
   max-width: 1440px;
-  width: 100%;
-  height: 845px;
-  margin: 0 auto;
+  width: 100vw;
+  max-height: 845px;
+  height: 100vh;
+  margin-left: 3.5%;
+  margin-right: 2.5%;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
+  transform: translateX(-200%);
+  overflow: hidden;
   top: 0;
-  
-  display: none;
+  left: 0;
+  transition: .8s;
 }
-
+.active {
+  transform: translateX(0%);
+}
 
 .form-container {
   padding: 100px 235px 100px 235px;
@@ -1140,24 +1155,23 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
 }
 
-input[type=date],
-input[type=time] {
-  width: 185px;
-  height: 42px;
-}
-input[type=date] {
-  margin-right: 18px;
-}
+
 
 input[type=text],
 input[type=email],
 input[type=tel],
-.input-number
+.input-number,
+#name
 
  {
-  width: 396px;
-  height: 42px;
+   font-size: 18px;
+  width: 356px;
+  min-height: 42px;
   margin-top: 19px;
+  
+}
+.form-left {
+  height: 663px;
 }
 .form-title-mini {
   font-family: Forum;
@@ -1394,6 +1408,8 @@ margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 .booking-button span {
   font-family: Roboto;
@@ -1427,11 +1443,177 @@ margin-bottom: 10px;
   z-index: 100;
 }
 
+.select-label {
+  position: relative;
+}
+.select-label::after {
+  position: absolute;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  left: 15px;
+  top: calc(50% - 7.5px);
+  width: 15px;
+  height: 15px;
+}
+
+.select-label-date::after {
+  background-image: url(./images/date.svg);
+}
+.select-label-time::after {
+  background-image: url(./images/time.svg);
+}
+.select-label-date::before {
+  content: 'Date';
+  position: absolute;
+  font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+padding-left: 30px;
+left: 15px;
+top: 0px;
+z-index: 1;
+}
+
+.select-label-time::before {
+  content: 'Time';
+  position: absolute;
+  font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+padding-left: 30px;
+left: 15px;
+top: 0px;
+z-index: 1;
+}
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-datetime-edit-hour-field,
+input[type="time"]::-webkit-datetime-edit-minute-field
+{ display: none;
+  
+   }
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field,
+input[type="date"]::-webkit-datetime-edit-text {
+    display: none;
+   
+}
+input[type="date"] {
+  margin-right: 15px;
+}
+
+input[type=time] {
+  outline: none;
+}
+
+.select {
+  width: 143px;
+  height: 45px;
+  padding-left: 45px;
+  position: relative;
+  font-size: 18px;
+  background-image: url(./images/select-open.svg);
+  background-position: right 15px top 50%,0 0;
+  background-size: 17px 17px,100%;
+  background-repeat: no-repeat;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  transition: .25s;
+  border: 1px solid #030303;
+}
+
+.label-input {
+  position: relative;
+}
+.input {
+  padding-left: 40px;
+  
+}
+.label-name::after {
+  position: absolute;
+  background-image: url(./images/name.svg);
+  width: 13px;
+    height: 15px;
+    top: 35px;
+    content: "";
+    left: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+
+.label-email::after {
+  position: absolute;
+  background-image: url(./images/email.svg);
+  width: 13px;
+    height: 15px;
+    top: 35px;
+    content: "";
+    left: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.label-tel::after {
+  position: absolute;
+  background-image: url(./images/tel.svg);
+  width: 14px;
+    height: 23px;
+    top: 30px;
+    content: "";
+    left: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.label-ticket-choose::before {
+  position: absolute;
+  z-index: 1;
+  background-image: url(./images/ticket-form.svg);
+  width: 14px;
+    height: 23px;
+    top: 30px;
+    content: "";
+    left: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.label-ticket-choose::after {
+  position: absolute;
+  background-image: url(./images/select-open.svg);
+  width: 17px;
+    height: 17px;
+    top: 30px;
+    content: "";
+    right: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
 /* PARALLAX */
 .parallax {
   background-image: url(./images/parallax.jpg);
   margin:0 auto;
-  max-width: 1920px;
+  max-width: 100%;
   height:400px;
   background-size: cover;
   background-attachment: fixed;
