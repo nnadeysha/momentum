@@ -1,4 +1,5 @@
 
+import adaptstyle from './styles/adaptivestyle.css'
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -7,9 +8,37 @@ const closeBtn = document.querySelector('.form-close-button');
 const form = document.querySelector('.form-wrapper');
 const overlay = document.querySelector('.overlay');
 const bookBtn = document.querySelector('.booking-button')
+const burger = document.querySelector('.burger'),
+      nav = document.querySelector('.link'),
+      links = document.querySelectorAll('.link'),
+      welcomeTitle = document.querySelectorAll('.welcome');
+const galleryImgContainer = document.querySelector('.flex-inner-gallery');
 
 
 
+
+//gamburger-menu
+
+
+function gamburger () {
+  burger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      
+      burger.classList.toggle('toggle');
+      welcomeTitle.style.display = 'none'
+
+
+  } )
+}
+
+links.forEach(n => n.addEventListener('click', closeMenu));
+function closeMenu () {
+  nav.classList.remove('active');
+  burger.classList.remove('toggle');
+ 
+}
+
+gamburger();
 
 
 progress.addEventListener('input', function() {
@@ -54,31 +83,56 @@ close();
 
   bookBtn.addEventListener('mouseleave', () => {
    bookBtn.removeChild(ripple)
-  })
+  });
   
 
-  const galleryImgContainer = document.querySelector('.flex-inner-gallery');
+  //Art gallery
 
-let images = [];
-for (let i = 1; i < 16; i++) {
-	image = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
-	images.push(image)
+  let images = [];
+  for (let i = 1; i < 16; i++) {
+    let img = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
+    images.push(img)
+  }
+  
+  let i = 0, arr = [], temp;
+  
+  while (arr.length < 15) {
+    temp = Math.trunc(Math.random() * 15 + 1);
+    if (!arr.includes(temp)) {
+      arr.push(temp);
+    };
+  }
+  let randomImages = [];
+  for (let i = 0; i < 15; i++) {
+    randomImages.push(images[arr[i] - 1])
+  }
+  
+  galleryImgContainer.innerHTML = randomImages.join('');
+  
+ 
+/*   function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+} */
+
+/* function randomPictures() {
+    const PATH = 'images/gallery/'
+    const blocks = document.querySelectorAll('#galleryBlocks>div>img')
+    const pictures = ['galery1','galery2','galery3','galery4','galery5','galery6','galery7','galery8','galery9','galery10','galery12','galery15']
+
+    for (let block of blocks){
+        const index = getRandomInt(0, pictures.length)
+        block.src = PATH + pictures[index] + '.jfif'
+        pictures.splice(index,1)
+    }
 }
 
-let i = 0, arr = [], temp;
+randomPictures()
+ */
 
-while (arr.length < 15) {
-	temp = Math.trunc(Math.random() * 15 + 1);
-	if (!arr.includes(temp)) {
-		arr.push(temp);
-	};
-}
-let randomImages = [];
-for (let i = 0; i < 15; i++) {
-	randomImages.push(images[arr[i] - 1])
-}
 
-galleryImgContainer.innerHTML = randomImages.join('');
+
 
 
 
@@ -97,8 +151,8 @@ galleryImgContainer.innerHTML = randomImages.join('');
   }) */
 
 
-/* 
 
+/* 
 const video = document.querySelector('.video');
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -205,6 +259,4 @@ playBigBtn.addEventListener('click', togglePlay);
 video.addEventListener('play', updateToggle);
 video.addEventListener('pause', updateToggle);
 video.addEventListener('timeupdate', updateProgress);
-progress.addEventListener9('change', setProgress);
-
- */
+progress.addEventListener9('change', setProgress) */

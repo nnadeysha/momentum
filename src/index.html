@@ -11,6 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
+
+
   <title>Museum</title>
 </head>
 <body>
@@ -18,32 +20,38 @@
     <div class="container">
     <div class="header-container ">
       <h1>Museum</h1>
-        <div class="icon"><a href="#" class="header-logo-text">
-          Louvre
-        </a></div>
+      <div class="icon"><a href="#" class="header-logo-text">
+        Louvre
+      </a></div>
         <div class="nav">
           <nav class="header-navigation">
             <ul class="nav-list">
-              <li class="link">
+              <li class="link header-link">
                 <a href="#visiting">Visiting</a>
               </li>
-              <li class="link">
+              <li class="link header-link">
                 <a href="#explore">Explore</a>
               </li>
-              <li class="link">
+              <li class="link header-link">
                 <a href="#video">Video</a>
               </li>
-              <li class="link">
+              <li class="link header-link">
                 <a href="#gallery">Gallery</a>
               </li>
-              <li class="link">
+              <li class="link header-link">
                 <a href="#tickets">Tickets</a>
               </li>
-              <li class="link">
+              <li class="link header-link">
                 <a href="#contacts">Contacts</a>
               </li>
             </ul>
+            
           </nav>
+          <div class="burger">
+            <div class="burger-line first"></div>
+            <div class="burger-line second"></div>
+            <div class="burger-line third"></div>
+          </div>
         </div>
       </div>  
       </div>
@@ -53,13 +61,15 @@
       <div class="container">
         <div class="welcome-wrapper">
         <div class="welcome">
-          <h2 class="section-title-dark welcome-title">
-            <span>Welcome</span>
-             to the Louvre
-          </h2>
-          <p class="welcome-text">From the castle to the museum</p>
-            
-           <a href="tour1.html" target="_blank" class="welcome-button">Discover the Louvre</a>
+          <div class="welcome-display">
+            <h2 class="section-title-dark welcome-title">
+              <span>Welcome</span>
+               to the Louvre
+            </h2>
+            <p class="welcome-text">From the castle to the museum</p>
+              
+             <a href="tour1.html" target="_blank" class="welcome-button">Discover the Louvre</a>
+          </div>
         </div>
         <div class="welcome-slider">
           <div class="w-slide">
@@ -156,9 +166,9 @@
         <div><h2 class="section-title-dark">Picture explore</h2>
           <div class="underline-title"></div>
           <div class="explore-text">
-            <p class="explore-subtext">Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
-            <p class="explore-subtext">It was cleaned in 1984 to remove a <mark class="colortext">"yellow veil"</mark> of dust that had gathered since the previous restoration in the 19th century.</p>
-            <p class="explore-subtext">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
+            <p class="explore-subtext explore-subtext1">Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden Age.</p>
+            <p class="explore-subtext explore-subtext2">It was cleaned in 1984 to remove a <mark class="colortext">"yellow veil"</mark> of dust that had gathered since the previous restoration in the 19th century.</p>
+            <p class="explore-subtext explore-subtext3">The cleaning provoked furious protests, not because the picture had been damaged in any way, but because it looked different.</p>
           </div>
         </div>
         <div class="explore-slider" >
@@ -238,7 +248,14 @@
         <div class="flex-gallery">
           <div class="gradient"></div>
           <div class="flex-inner-gallery">
-           
+            <img src="images/gallery/galery2.jpg" alt="Diane de Versailles" title="Diane de Versailles">
+             <img src="images/gallery/galery9.jpg" alt="Louvre Museum Greek Statues" title="Louvre Museum Greek Statues">
+             <img src="images/gallery/galery4.jpg" alt="Winged Victory Of Samothrace" title="Winged Victory Of Samothrace">
+            <img src="images/gallery/galery6.jpg" alt="The Virgin and Child with Saint Anne" title="The Virgin and Child with Saint Anne">
+          </div>
+          <div class="flex-inner-gallery">
+          </div>
+          <div class="flex-inner-gallery">
           </div>
         </div>
       </div>
@@ -250,7 +267,11 @@
           <div class="underline-title"></div>
           <div class="tickets-content">
             <div >
-              <img class="tickets-image" src="./images/ticketimage.jpg" alt="picture">
+              <img class="tickets-image" srcset="./images/ticketimage-700w.jpg 700w"
+                                        sizes="(max-width: 1024px) 700px,
+                                        (max-width: 480px) 440px,
+                                                          800px"
+                                        src="./images/ticketimage.jpg" alt="picture">
             </div>
             <div class="tickets-buy">
               <div class="exposition">
@@ -296,7 +317,7 @@
                     </button>
                   </div>
                 </div>
-                <h4 class="exposition-title total-title">Total €220</h4>
+                <h4 class="exposition-title total-title">Total €<i>220</i></h4>
                 <div class="buy-btn">
                   <a href="#tickets" class="buy-button"><span>Buy Now</span></a>
                 </div>
@@ -426,11 +447,15 @@
               <span>address: 75001 Paris, France</span>
               <a href="tel:+33(0)140205050">phone: +33(0) 1 40 20 50 50</a>
              <span></span>
-              <a href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
+              <a class="mailto" href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
             </p>
           </div>
           <div>
-            <img class="map" src="./images/map.png" alt="map">
+            <img class="map" srcset="./images/map-694w.jpg 694w"
+                                        sizes="(max-width: 1024px) 694px,
+                                        (max-width: 480px) 440px,
+                                                          800px"
+                                        src="./images/map.png" alt="map">
           </div>
         </div>
       </div>
@@ -445,22 +470,27 @@
           </div>
           <div class="footer-navigation">
             <nav>
-              <ul class="footer-navigation">
+              <ul class=" footer-navigation1 ">
                 <li class="link footer-link">
                   <a href="#visiting">Visiting</a>
-                </li>
-                <li class="link footer-link">
-                  <a href="#gallery">Gallery</a>
                 </li>
                 <li class="link footer-link">
                   <a href="#explore">Explore</a>
                 </li>
                 <li class="link footer-link">
-                  <a href="#tickets">Tickets</a>
-                </li>
-                <li class="link footer-link">
                   <a href="#video">Video</a>
                 </li>
+                
+                
+              </ul>
+                <ul class=" footer-navigation2">
+                  <li class="link footer-link">
+                    <a href="#gallery">Gallery</a>
+                  </li>
+                <li class="link footer-link">
+                  <a href="#tickets">Tickets</a>
+                </li>
+                
                 <li class="link footer-link">
                   <a href="#contacts">Contacts</a>
                 </li>
