@@ -225,7 +225,7 @@ span {
 /* welcome-slider */
  .welcome-slider {
   position: absolute;
-    right: 40px;;
+    right: 40px;
     top: 153px;
     z-index: 0;
   
@@ -535,6 +535,7 @@ text-align: left;
 
 .explore-slider-img {
   background-image: url(./images/explore-slider.svg);
+  background-size: cover;
   position: absolute;
   z-index: 2;
   top: 14px;
