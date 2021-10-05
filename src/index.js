@@ -10,10 +10,12 @@ const overlay = document.querySelector('.overlay');
 const bookBtn = document.querySelector('.booking-button')
 const burger = document.querySelector('.burger'),
       nav = document.querySelector('.header-navigation'),
+      navList = document.querySelector('.nav-list'),
       links = document.querySelectorAll('.link'),
       welcomeTitle = document.querySelector('.welcome');
 const galleryImgContainer = document.querySelector('.flex-inner-gallery');
-
+const welcomeWrapper = document.querySelector('.welcome-wrapper');
+const mainMenu768 = document.querySelector('.main-menu-768w');
 
 
 
@@ -24,8 +26,11 @@ const galleryImgContainer = document.querySelector('.flex-inner-gallery');
 function gamburger () {
   burger.addEventListener('click', () => {
       nav.classList.toggle('active');
+      navList.classList.toggle('activenavlist');
       burger.classList.toggle('toggle');
       welcomeTitle.classList.toggle('activewelcome');
+      welcomeWrapper.classList.toggle('activewelcomeALL');
+      mainMenu768.classList.toggle('active-main-menu-768w');
       
 
 
@@ -37,7 +42,9 @@ function closeMenu () {
   nav.classList.remove('active');
   burger.classList.remove('toggle');
   welcomeTitle.classList.remove('activewelcome');
- 
+  navList.classList.remove('activenavlist');
+  welcomeWrapper.classList.remove('activewelcomeALL');
+  mainMenu768.classList.remove('active-main-menu-768w');
 }
 
 gamburger();
@@ -112,7 +119,7 @@ close();
   galleryImgContainer.innerHTML = randomImages.join('');
   
 
-  console.log(`Привет, товарищ проверяющий. Не до конца выполнено бургер меню для всех экранов, форма покупки билетов не адаптивная. Это всё будет доделано 5.10 вечером. Буду премного благодарна, если проверите 6.10, если нет то право ваше))`)
+  console.log(`Привет, товарищ проверяющий)  форма покупки билетов не адаптивная. Это всё будет доделано 5.10 вечером. Буду премного благодарна, если проверите 6.10, если нет то право ваше))`)
  
 /*   function getRandomInt(min, max) {
     min = Math.ceil(min);

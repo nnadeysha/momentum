@@ -20,7 +20,9 @@ li {
   list-style-type:none;
 }
 
-
+.main-menu-768w {
+  display: none;
+}
 
 p {
   font-family: Roboto;
