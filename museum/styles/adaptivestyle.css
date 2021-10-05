@@ -440,7 +440,43 @@
       margin-left: 15px;
     }
 
+    /* FORM */
+    .form-wrapper {
+      max-width: 1024px;
+      height: 100%;
+      max-height: 768px;
+      width: 100%;
+      transform: translateX(-200%);
+      overflow: hidden;
+      transition: left 1s;
+      background-color: #fff;
+      position: fixed;
+      top: 50px;
+      left: -36px;
+    }
+    .form-right {
+      height: 663px;
+      
+    }
+    .form-title {
+      line-height: 40px;
+    }
+    .form-subtitle {
+      margin-top: 20px;
+    }
+    .active {
+      transform: translateX(0%);
+    }
 
+    .form-container {
+      padding: 75px 27px 30px 27px;
+      display: flex;
+    }
+    .entry-buttons > .form-age-button > .form-quantity {
+      width: 105px;
+      height: 21px;
+    }
+    
     /* CONTACTS */
     .contacts-data {
       font-size: 20px;
