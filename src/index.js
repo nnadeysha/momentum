@@ -1,5 +1,5 @@
 
-import adaptstyle from './styles/adaptivestyle.css'
+import adaptstyle from '/styles/adaptivestyle.css';
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -9,10 +9,11 @@ const form = document.querySelector('.form-wrapper');
 const overlay = document.querySelector('.overlay');
 const bookBtn = document.querySelector('.booking-button')
 const burger = document.querySelector('.burger'),
-      nav = document.querySelector('.link'),
+      nav = document.querySelector('.header-navigation'),
       links = document.querySelectorAll('.link'),
-      welcomeTitle = document.querySelectorAll('.welcome');
+      welcomeTitle = document.querySelector('.welcome');
 const galleryImgContainer = document.querySelector('.flex-inner-gallery');
+
 
 
 
@@ -23,9 +24,9 @@ const galleryImgContainer = document.querySelector('.flex-inner-gallery');
 function gamburger () {
   burger.addEventListener('click', () => {
       nav.classList.toggle('active');
-      
       burger.classList.toggle('toggle');
-      welcomeTitle.style.display = 'none'
+      welcomeTitle.classList.toggle('activewelcome');
+      
 
 
   } )
@@ -35,6 +36,7 @@ links.forEach(n => n.addEventListener('click', closeMenu));
 function closeMenu () {
   nav.classList.remove('active');
   burger.classList.remove('toggle');
+  welcomeTitle.classList.remove('activewelcome');
  
 }
 
@@ -109,6 +111,8 @@ close();
   
   galleryImgContainer.innerHTML = randomImages.join('');
   
+
+  console.log(`Привет, товарищ проверяющий. Не до конца выполнено бургер меню для всех экранов, форма покупки билетов не адаптивная. Это всё будет доделано 5.10 вечером. Буду премного благодарна, если проверите 6.10, если нет то право ваше))`)
  
 /*   function getRandomInt(min, max) {
     min = Math.ceil(min);

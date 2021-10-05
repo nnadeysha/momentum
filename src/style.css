@@ -112,7 +112,9 @@ header {
   padding-bottom: 50px;
  
 }
-
+.burger-menu-arrow {
+  display: none;
+}
 .icon {
   background-image: url(./images/logo.svg);
   background-repeat: no-repeat;
@@ -1712,12 +1714,7 @@ ul>li>a {
   color: #fff;
   margin-top: -7px;
 }
-.footer-navigation1 {
-  margin-left: 7.5vw;
-}
-.footer-navigation2 {
-  margin-left: 9vw;
-}
+
 
 .social-navigation {
   display: flex;
