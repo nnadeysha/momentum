@@ -1071,7 +1071,7 @@ letter-spacing: 3px;
 
     .footer-navigation1 > .footer-link,
     .footer-navigation2 > .footer-link {
-      line-height: 0px;
+      line-height: 50px;
       letter-spacing: 2px;
       font-size: 18px;
       
