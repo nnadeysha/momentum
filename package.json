@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "rss-scripts": "^0.2.3"
+  },
+  "dependencies": {
+    "swiper": "^7.0.8"
   }
 }

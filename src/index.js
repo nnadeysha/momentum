@@ -1,5 +1,28 @@
 
 import adaptstyle from '/styles/adaptivestyle.css';
+AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+  
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 100, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 600, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+});
+
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
@@ -17,6 +40,72 @@ const galleryImgContainer = document.querySelector('.flex-inner-gallery');
 const welcomeWrapper = document.querySelector('.welcome-wrapper');
 const mainMenu768 = document.querySelector('.main-menu-768w');
 
+
+
+
+/* Swiper */
+ // import Swiper bundle with all modules installed
+ import Swiper from 'swiper/bundle';
+
+ // import styles bundle
+ import 'swiper/css/bundle';
+ 
+ // init Swiper:
+ const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'horizontal',
+  loop: true,
+  grabCursor: true,
+ spaceBetween: 10,
+ initialSlide: 0,
+ speed: 800,
+
+ keyboard: {
+  enabled: true,
+ 
+ },
+ 
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    
+    
+    
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  /* hashNavigation: {
+    watchState: true
+  }, */
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});
+
+document.getElementById("swiper-fraction-current").textContent = "0" + swiper.activeIndex,
+swiper.on("slideChange", (function() {
+    document.getElementById("swiper-fraction-current").textContent = `0${swiper.realIndex + 1}`
+}
+));
+//FRACTION
+/* let allSlides = document.querySelector('.swiper-fraction-total');
+let mySliderCurrentSlide = document.querySelector('.swiper-fraction-current');
+let imageSlider = document.querySelector('.swiper');
+let slides =
+
+allSlides.innerHTML = imageSlider.slides.length;
+imageSlider.on('slideChange', function () {
+  let currentSlide = ++imageSlider.realIndex;
+  mySliderCurrentSlide.innerHTML = currentSlide
+}) */
 
 
 
@@ -97,7 +186,7 @@ close();
 
   //Art gallery
 
-  let images = [];
+  /* let images = [];
   for (let i = 1; i < 16; i++) {
     let img = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
     images.push(img)
@@ -117,30 +206,41 @@ close();
   }
   
   galleryImgContainer.innerHTML = randomImages.join('');
-  
+   */
 
-  console.log(`Привет, товарищ проверяющий)  форма покупки билетов не адаптивная. Это всё будет доделано 5.10 вечером. Буду премного благодарна, если проверите 6.10, если нет то право ваше))`)
- 
-/*   function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-} */
+  //art gallery surfacing
 
-/* function randomPictures() {
-    const PATH = 'images/gallery/'
-    const blocks = document.querySelectorAll('#galleryBlocks>div>img')
-    const pictures = ['galery1','galery2','galery3','galery4','galery5','galery6','galery7','galery8','galery9','galery10','galery12','galery15']
+  /* const animItams = document.querySelectorAll('.anim-items');
 
-    for (let block of blocks){
-        const index = getRandomInt(0, pictures.length)
-        block.src = PATH + pictures[index] + '.jfif'
-        pictures.splice(index,1)
+  if (animItams.length > 0) {
+    function animOnScroll(params) {
+      for (let index = 0; index < animItams.length; index++) {
+        const animItem = animItams[index];
+        const animItemHeight = animItem.offsetHeight;
+        const animItemOffset = offset(animItem).top;
+        const animStart = 4;
+
+        let animItemPoint = window.innerHeight - animItemHeight / animStart;
+        if (animItemHeight > window.innerHeight) {
+          animItemPoint = window.innerHeight - window.innerHeight / animStart;
+        }
+
+        if (pageYOffset > (animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+          animItem.classList.add('-active')
+        } else {
+          animItem.classList.remove('-active')
+        }
+      }
     }
-}
-
-randomPictures()
- */
+    function offset(el) {
+      const rect = el.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      return { top: rect.top + scrollTop, left: rect.left + scrollLeft}
+    }
+  }
+ 
+animOnScroll() */
 
 
 

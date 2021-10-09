@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 
 
@@ -110,7 +112,7 @@
              <a href="tour1.html" target="_blank" class="welcome-button">Discover the Louvre</a>
           </div>
         </div>
-        <div class="welcome-slider">
+        <!-- <div class="welcome-slider">
           <div class="w-slide">
             <img class="w-slide-img" src="./images/wslider1.jpg" alt="slide">
           </div>
@@ -144,6 +146,58 @@
               <button class="arrow-right"></button>
             </div>
           </div>
+        </div> -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div data-hash="slide-1" class="swiper-slide">
+              <div class="w-slide">
+                <img class="w-slide-img" src="./images/wslider1.jpg" alt="slide">
+            </div>
+          </div>
+            <div data-hash="slide-2" class="swiper-slide">
+              <div class="w-slide w-slide2">
+              <img class="w-slide-img w-slide-img-hidden" src="./images/wslider2.jpg" alt="slide">
+            </div>
+          </div>
+            <div data-hash="slide-3" class="swiper-slide">
+              <div class="w-slide w-slide3">
+                <img class="w-slide-img w-slide-img-hidden" src="./images/wslider3.jpg" alt="slide">
+              </div>
+            </div>
+            <div data-hash="slide-4" class="swiper-slide">
+              <div class="w-slide w-slide4">
+                <img class="w-slide-img w-slide-img-hidden" src="./images/wslider4.jpg" alt="slide">
+              </div>
+            </div>
+            <div data-hash="slide-5" class="swiper-slide">
+              <div class="w-slide w-slide5">
+                <img class="w-slide-img w-slide-img-hidden" src="./images/wslider5.jpg" alt="slide">
+              </div>
+            </div>
+          </div>
+          
+          <div class="welcome-slider-progress">
+            <div class="welcome-slider-progress-wrapper">
+
+
+            <div class="swiper-fraction">
+              <div id="swiper-fraction-current">1</div>
+              <div class="swiper-fraction-separrator">/</div>
+              <div class="swiper-fraction-total">05</div>
+            </div>
+            <div class="swiper-pagination b1"></div>
+        <div class="swiper-arrows">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+          
+          
+      </div>
+          </div>
+          
+          
         </div>
       </div>
       </div> 
@@ -286,16 +340,60 @@
         <h2 class="section-title-dark">Art gallery</h2>
         <div class="flex-gallery">
           <div class="gradient"></div>
-          <div class="flex-inner-gallery">
-            <img src="images/gallery/galery2.jpg" alt="Diane de Versailles" title="Diane de Versailles">
-             <img src="images/gallery/galery9.jpg" alt="Louvre Museum Greek Statues" title="Louvre Museum Greek Statues">
-             <img src="images/gallery/galery4.jpg" alt="Winged Victory Of Samothrace" title="Winged Victory Of Samothrace">
-            <img src="images/gallery/galery6.jpg" alt="The Virgin and Child with Saint Anne" title="The Virgin and Child with Saint Anne">
+          <div class="flex-inner-gallerys">
+            <div class="gallery-collumn1">
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery1.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery2.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery3.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery4.jpg" alt="Picture">
+              </div>
+            </div>
+            <div class="gallery-collumn2">
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery5.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery6.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery7.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery8.jpg" alt="Picture">
+              </div>
+            </div>
+            <div class="gallery-collumn3">
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper gallery-image-wrapper3  ">
+                <img class=" anim-show" src="./images/gallery/galery10.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery9.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery11.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery12.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery13.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery14.jpg" alt="Picture">
+              </div>
+              <div data-aos="zoom-in-up" class="gallery-image-wrapper  ">
+                <img class=" anim-show" src="./images/gallery/galery15.jpg" alt="Picture">
+              </div>
+            </div>
           </div>
-          <div class="flex-inner-gallery">
-          </div>
-          <div class="flex-inner-gallery">
-          </div>
+        
         </div>
       </div>
     </section>
@@ -577,7 +675,7 @@
       <a href="https://github.com/nnadeysha" class="down footer-username" target="_blank">nnadeysha</a>
   </div>
   </footer>
-  <script src="./index.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 </html>
 
