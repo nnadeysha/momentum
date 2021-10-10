@@ -161,7 +161,7 @@
     .welcome {
       margin-bottom: 188px;
     }
-    .welcome-slider{
+   /*  .welcome-slider{
       right: 20px;
       top: 127px;
     }
@@ -174,7 +174,7 @@
       width: 100%;
       max-width: 700px;
       margin-right: 0;
-      }
+      } */
     .welcome-text {
       font-family: Roboto;
       font-size: 24px;
@@ -210,7 +210,7 @@
       text-align: center;
       margin-top: 52px;
     }
-    .welcome-slider-progress {
+    /* .welcome-slider-progress {
       width: 700px;
       
     }
@@ -244,7 +244,7 @@
     }
     .welcome-slider-progres {
       justify-content: center;
-    }
+    } */
     /* visiting */
     .card-title {
       font-size: 28px;
@@ -720,14 +720,14 @@
 
 
     /* welcome */
-    .welcome-slider {
+    /* .welcome-slider {
       position: inherit;
       right: 0;
       margin-top: -62px;
     }
     .welcome-slider-progress {
       position: inherit;
-    }
+    } */
     .welcome-wrapper {
       display: flex;
       flex-direction: column;
@@ -735,14 +735,14 @@
     .welcome-button {
       display: none;
     }
-    .w-slide {
+    /* .w-slide {
       max-width: 728px;
       width: 100%;
     }
     .w-slide-img {
       max-width: 728px;
       width: 100%;
-    }
+    } */
 
     .welcome-display {
       display: flex;
