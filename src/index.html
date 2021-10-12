@@ -388,16 +388,16 @@
             <div class="tickets-buy">
               <div class="exposition">
                 <h4 class="exposition-title">Ticket Type</h4>
-                <label class="exposition-label">Permanent exhibition
-                  <input type="radio" checked="checked" name="radio">
+                <label class=" exposition-label exposition-label-permanent">Permanent exhibition
+                  <input id="tickets-buy-input" type="radio" checked="checked" name="radio" value="20">
                   <span class="checkmark"></span>
                 </label>
-                <label class="exposition-label">Temporary exhibition
-                  <input type="radio" name="radio">
+                <label class="exposition-label exposition-label-temporary">Temporary exhibition
+                  <input id="tickets-buy-input" type="radio" name="radio" value="25">
                   <span class="checkmark"></span>
                 </label>
-                <label class="exposition-label">Combined Admission
-                  <input type="radio" name="radio">
+                <label class="exposition-label exposition-label-combined">Combined Admission
+                  <input id="tickets-buy-input" type="radio" name="radio" value="40">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -408,11 +408,11 @@
                 <div class="button-age">
                   <p class="age-text1">Basic 18+</p>
                   <div class="quantity_inner">        
-                    <button type="button" class="bt_minus" onclick="this.nextElementSibling.stepDown()">
+                    <button type="button" class="bt_minus" id="tickets-buy-input" onclick="this.nextElementSibling.stepDown()">
                       <svg viewBox="0 0 20 20"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <input type="number" value="1" class="quantity" min="0" max="20" readonly>
-                    <button type="button" class="bt_plus" onclick="this.previousElementSibling.stepUp()">
+                    <input type="number" value="1" class="quantity basic" id="tickets-buy-input" min="0" max="20" readonly>
+                    <button type="button" class="bt_plus"  id="tickets-buy-input" onclick="this.previousElementSibling.stepUp()">
                       <svg viewBox="0 0 20 20"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                   </div>
@@ -421,16 +421,16 @@
                 <div class="button-age button-age2">
                   <p class="age-text2">Senior 65+</p>
                   <div class="quantity_inner">        
-                    <button type="button" class="bt_minus" onclick="this.nextElementSibling.stepDown()">
+                    <button type="button" class="bt_minus" id="tickets-buy-input" onclick="this.nextElementSibling.stepDown()">
                       <svg viewBox="0 0 20 20"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <input type="number" value="1" class="quantity" min="0" max="20" readonly>
-                    <button type="button" class="bt_plus" onclick="this.previousElementSibling.stepUp()">
+                    <input type="number" value="1" class="quantity senior" id="tickets-buy-input" min="0" max="20" readonly>
+                    <button type="button" class="bt_plus" id="tickets-buy-input" onclick="this.previousElementSibling.stepUp()">
                       <svg viewBox="0 0 20 20"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
                   </div>
                 </div>
-                <h4 class="exposition-title total-title">Total €<i>220</i></h4>
+                <h4 class="exposition-title total-title total">Total € 00.00</h4>
                 <div class="buy-btn">
                   <a href="#tickets" class="buy-button"><span>Buy Now</span></a>
                 </div>
@@ -538,7 +538,7 @@
                         <p class="card-bottom"></p>
                       </div>
                       <div class="form-booking">
-                        <a class="booking-button" href="#"><span>Book</span></a>
+                        <a class="booking-button" href="#tickets"><span>Book</span></a>
                       </div>
                     </div>
                   </div>
@@ -564,15 +564,26 @@
               <a class="mailto" href="mailto:info@louvre.fr">mail: info@louvre.fr</a>
             </p>
           </div>
-          <div>
-            <img class="map" srcset="./images/map-694w.jpg 694w,
-                                      ./images/map-420w.png 380w"
-            
-                                        sizes="(max-width: 1024px) 694px,
-                                        (max-width: 420px) 380px,
-                                        1440px"
-                                        src="./images/map.png" alt="map">
-          </div>
+          <iframe width="960px" height="620px" src="https://api.mapbox.com/styles/v1/fespis/ckuintvdhaw2717pri2yskamt.html?title=false&amp;access_token=pk.eyJ1IjoiZmVzcGlzIiwiYSI6ImNrdWluYTVmYzBia2wzM282a2oxOGx6enAifQ.l2Lwe0LiOQpS0fFyhO9GiA&amp;zoomwheel=false#15.93/48.860985/2.335975" title="Monochrome" style="border:none;"></iframe>
+ 
+  <!-- <script>
+            function initMap(){
+    let options = {
+      center: { lat: 48.8607240140003, lng: 2.3376332692401993 },
+      zoom: 15, 
+    };
+    map = new google.maps.Map(document.getElementById("map"), options);
+    
+    const marker = new google.maps.Marker({
+    position:  { lat: 48.8607240140003, lng: 2.3376332692401993 },
+    map: map,
+    icon: 'https://svgsilh.com/svg/157354.svg',
+    width: '20px',
+    height: '32px'
+  });
+    
+  }
+          </script> -->
         </div>
       </div>
     </section>
@@ -650,7 +661,10 @@
       <a href="https://github.com/nnadeysha" class="down footer-username" target="_blank">nnadeysha</a>
   </div>
   </footer>
-  <script src="videoslider.js"></script>
+  
+  <!-- <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArFhoNZHhEDV7kuD_41tzX1fsPHNWHMBA&callback=initMap"> async
+</script> -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 </html>

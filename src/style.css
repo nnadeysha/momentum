@@ -1553,7 +1553,7 @@ input[type=tel],
 .form-right-container {
   padding: 25px 29px ;
 }
-
+.bt
 
 .overview-title {
   font-family: Roboto;
@@ -1942,10 +1942,9 @@ input[type=time] {
   line-height: 50px;
 }
 
-.map {
-  width: 100%;
-  max-width: 960px;
-  height: auto
+#map {
+  width: 960px;
+  height: 620px
 }
 
 /* footer */

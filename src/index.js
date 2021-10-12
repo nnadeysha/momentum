@@ -330,7 +330,10 @@ close();
   topExploreSlide.style.width = this.value + '%'
  })
 
- 
+
+
+
+
   fullscreenbtn.addEventListener("click",toggleFullScreen,false);
   playBtn.addEventListener('click', togglePlay);
   video.addEventListener('click', togglePlay);
@@ -343,13 +346,170 @@ close();
  
 
 
+//TICKETS
+
+const permanentTypeTicket = document.querySelector('.exposition-label-permanent input');//20 10
+const temporaryTypeTicket = document.querySelector('.exposition-label-temporary input');//25 12,5
+const combinedTypeTicket = document.querySelector('.exposition-label-combined input');// 40 20
+const seniorTypeTicket = document.querySelector('.senior');
+const basicTypeTicket = document.querySelector('.basic');
+const total = document.querySelector('.total');
+const inputsTickets = document.querySelectorAll('#tickets-buy-input');
+const minus = document.querySelector('.bt_minus');
+const radioType = document.querySelectorAll('input[name="radio"]');
+
+/*  function SUMTICKET(){
+  if(permanentTypeTicket.checked){
+     typeOfTicket += 20;
+  }
+  if(temporaryTypeTicket.checked){
+    typeOfTicket += 25;
+ }
+ if(combinedTypeTicket.checked){
+  typeOfTicket += 40;
+}
+return typeOfTicket;
+} */
+ 
 
 
+/* function TOTALSUMSENIOR() {
+  if(seniorTypeTicket.value >= 1 && permanentTypeTicket.checked) {
+    sumS += 10;
+  }
+  if(seniorTypeTicket.value >= 1 && temporaryTypeTicket.checked) {
+     sumS += 12.5;
+  } 
+  if(seniorTypeTicket.value >= 1 && combinedTypeTicket.checked) {
+    sumS += 20;
+  } 
+  
+  return parseInt(seniorTypeTicket.value)*sumS
+}
+function TOTALSUMBASIC() {
+  if(basicTypeTicket.value >= 1 && permanentTypeTicket.checked) {
+     sumB += 20;
+  }
+  if(basicTypeTicket.value >= 1 && temporaryTypeTicket.checked) {
+    sumB += 25;
+  } 
+  if(basicTypeTicket.value >= 1 && combinedTypeTicket.checked) {
+    sumB += 40;
+  } 
+  
+  return parseInt(basicTypeTicket.value)*sumB;
+} */
+
+function calculate() {
+  let totalPrice;
+
+  for(const radio of radioType) {
+    if(radio.checked){
+      totalPrice = (parseInt(seniorTypeTicket.value)*parseInt(radio.value))/2 + parseInt(basicTypeTicket.value)*parseInt(radio.value)
+    }
+  }
+  console.log(totalPrice)
+  total.innerHTML = `Total: €${totalPrice}`;
+  
+}
 
 
+calculate()
+
+for (const inputTicket of inputsTickets){
+  
+  inputTicket.addEventListener('click', function() {
+    calculate()
+  });
+  
+}
 
 
+console.log(`
+Ваша оценка - 95 баллов 
+Отзыв по пунктам ТЗ:
+Не выполненные:
+видеогалерея не выполнена, сам видеоплеер сделан полностью кроме окрашивания полосы прогресбара видео, что указано ниже.
+Секция Tickets: не выполнено сохранение данных при перезагрузке, остальные 2 пункта выполнены.
+Секция Калькулятор продажи билетов в форме продажи билетов не выполнен совсем, соответственно не выполнена и Валидация формы.
 
+Остальные пункты выполнены, смотрите ниже.
+
+Частично выполненные пункты:
+1) прогресс-бар отображает прогресс проигрывания видео, только не окрашивается
+
+Выполненные пункты:
+1) есть возможность перелистывания слайдов влево и вправо кликами по стрелкам 
+
+2) есть возможность перелистывания слайдов влево и вправо свайпами (движениями) мышки 
+
+3) есть возможность перелистывания слайдов кликами по буллетам (квадратики внизу слайдера) 
+
+4) слайды перелистываются плавно с анимацией смещения вправо или влево 
+
+5) перелистывание слайдов бесконечное (зацикленное) 
+
+6) при перелистывании слайдов буллет активного слайда подсвечивается (выделяется стилем) 
+
+7) при перелистывании слайдов кликами или свайпами меняется номер активного слайда 
+
+8) даже при частых кликах или свайпах нет ситуации, когда слайд после перелистывания находится не по центру, нет ситуации, когда видны одновременно два слайда 
+
+9) при клике по кнопке "Play" слева внизу на панели видео начинается проигрывание видео, иконка кнопки при этом меняется на "Pause", большая кнопка "Play" по центру видео исчезает. Повторный клик на кнопку останавливает проигрывание видео, иконка меняется на первоначальную, большая кнопка "Play" по центру видео снова отображается 
+
+10) при клике по большой кнопке "Play" по центру видео, или при клике по самому видео, начинается проигрывание видео, иконка кнопки "Play" слева внизу на панели видео меняется на "Pause", большая кнопка "Play" по центру видео исчезает. Клик на видео, которое проигрывается, останавливает проигрывание видео, иконка кнопки "Play" слева внизу на панели видео меняется на первоначальную, большая кнопка "Play" по центру видео снова отображается 
+
+11) перетягивание ползунка прогресс-бара позволяет изменить время с которого проигрывается видео 
+
+12) если прогресс-бар перетянуть до конца, видео останавливается, соответственно, меняется внешний вид кнопок "Play" 
+
+13) при клике на иконку динамика происходит toggle звука и самой иконки (звук включается или выключается, соответственно изменяется иконка) 
+
+14) при перемещении ползунка громкости звука изменяется громкость видео 
+
+15) если ползунок громкости звука перетянуть до 0, звук выключается, иконка динамика становится зачеркнутой 
+
+16) если при выключенном динамике перетянуть ползунок громкости звука от 0, звук включается, иконка громкости перестаёт быть зачёркнутой 
+
+17) при нажатии на кнопку fullscreen видео переходит в полноэкранный режим, при этом видео и панель управления разворачиваются во весь экран. При нажатии на кнопку fullscreen повторно видео выходит из полноэкранного режима. Нажатие на клавишу для выхода из полноэкранного режима Esc не проверяем и не оцениваем 
+
+18) клавиша Пробел — пауза, при повторном нажатии - play 
+
+19) Клавиша M (англ) — отключение/включение звука 
+
+20) Клавиша F — включение/выключение полноэкранного режима 
+
+21) Клавиши SHIFT+, (англ) — ускорение воспроизведения ролика 
+
+22) Клавиши SHIFT+. (англ) — замедление воспроизведения ролика 
+
+23) ползунок можно перетягивать мышкой по горизонтали 
+
+24) ползунок никогда не выходит за границы картины 
+
+25) при перемещении ползунка справа налево плавно появляется нижняя картина 
+
+26) при перемещении ползунка слева направо плавно появляется верхняя картина 
+
+27) при обновлении страницы ползунок возвращается в исходное положение 
+
+28) при прокрутке страницы вниз появление картин секции Galery сопровождается анимацией: изображения плавно поднимаются снизу вверх, увеличиваясь и создавая эффект выплывания. В качестве образца анимации используйте анимацию на сайте Лувра https://www.louvre.fr/ 
+
+29) если прокрутить страницу вверх и затем снова прокручивать вниз, анимация появления картин повторяется 
+
+30) при обновлении страницы, если она к тому моменту была прокручена до секции Galery, анимация картин повторяется 
+
+31) при изменении количества билетов Basic и Senior пересчитывается общая цена за них 
+
+32) у каждого типа билетов своя цена (20 €, 25 €, 40 € для Basic и половина этой стоимости для Senior). При изменении типа билета пересчитывается общая цена за них 
+
+33) в секции Contacts добавлена интерактивная карта 
+
+34) на карте отображаются маркеры, расположение и внешний вид маркеров соответствует макету 
+
+35) стиль карты соответствует макету 
+
+`)
 
 
 
@@ -399,55 +559,5 @@ close();
 
   //art gallery surfacing
 
-  /* const animItams = document.querySelectorAll('.anim-items');
-
-  if (animItams.length > 0) {
-    function animOnScroll(params) {
-      for (let index = 0; index < animItams.length; index++) {
-        const animItem = animItams[index];
-        const animItemHeight = animItem.offsetHeight;
-        const animItemOffset = offset(animItem).top;
-        const animStart = 4;
-
-        let animItemPoint = window.innerHeight - animItemHeight / animStart;
-        if (animItemHeight > window.innerHeight) {
-          animItemPoint = window.innerHeight - window.innerHeight / animStart;
-        }
-
-        if (pageYOffset > (animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-          animItem.classList.add('-active')
-        } else {
-          animItem.classList.remove('-active')
-        }
-      }
-    }
-    function offset(el) {
-      const rect = el.getBoundingClientRect(),
-      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      return { top: rect.top + scrollTop, left: rect.left + scrollLeft}
-    }
-  }
- 
-animOnScroll() */
-
-
-
-
-
-
- /*  buyBtn.forEach(element => {
-    element.addEventListener('click', function(e) {
-      let x = e.clientX - e.target.offsetLeft;
-      let y = e.clientY - e.target.offsetTop;
   
-      let ripples = document.createElement('span');
-      console.log(ripples)
-      ripples.style.left = x + 'px';
-      ripples.style.top = y + 'px';
-      this.appendChild(ripples);
-      
-    })
-  }) */
-
 
