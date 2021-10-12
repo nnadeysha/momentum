@@ -685,41 +685,174 @@ text-align: left;
 
 .explore-slider {
   position: relative;
-  
+  display: flex;
+  background: url(./images/after.jpg) no-repeat; 
+  width: 720px;
 }
-.explore-image {
-  margin-top: 14px;
-  max-width: 720px;
-  width: 100%;
-  height: auto;
+.explore-slider input {
+  -webkit-appearance: none;
+  width: 720px;
+  background: none;
   position: relative;
-  z-index: 1;
+}
+.explore-slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 39px;
+  height: 710px;
+  background: url(./images/explore-slider.svg) no-repeat;
+  cursor: e-resize;
+
+}
+.expl-img {
+  position: absolute;
+  left: 0;
+  background: url(./images/before.jpg) no-repeat; 
+  width: 60%;
+  height: 710px;
+  background-size: 47vw;
+}
+
+/* video */
+video {
+  max-width: 1440px;
+  width: 100%;
+  margin-bottom: -4px;
+}
+/* video */
+
+.video-controls {
+  max-width: 1440px;
+  height: 85px;
+  background-color: #000000;
+  margin-top: -4px;
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.button-control {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
   
 }
 
-.explore-bottom-image {
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 14px;
-  max-width: 720px;
-  width: 100%;
+.volume {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  width: 213px;
 }
 
-.explore-slider-img {
-  background-image: url(./images/explore-slider.svg);
-  background-size: cover;
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  right: 260px;
-  height: 700px;
-  width: 39px;
+.video-play{
+  background-image:url(./images/btn-play-mini.svg);
+  width: 23px;
+  height: 30px;
+  background-position:center;
+  cursor: pointer;
+  background-repeat:no-repeat;
+  background-color: transparent;
+}
+
+
+
+
+.controls-play:hover {
+  transform: scale(0.98);
   cursor: pointer;
 }
 
+.progress {
+  
+  height: 8px;
+  width: 929px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
 
-/* video */
+.progress::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #FFFFFF;
+}
+
+
+.control-time {
+  color: #FFFFFF;
+}
+
+.volume-icon {
+  background-image:url(./images/btn-volume.svg);
+  width: 38px;
+  height: 30px;
+  background-position:center;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.muteon {
+  background-image: url(./images/mute.svg);
+}
+.muteof {
+  background-image:url(./images/btn-volume.svg)
+}
+
+.progress-volume {
+  background: linear-gradient(to right, #710707 0%, #710707 100%, #C4C4C4 100%, #C4C4C4 100%);
+  height: 8px;
+  width: 155px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+.progress-volume::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #FFFFFF;
+}
+
+.scale-icon {
+  background-image:url(./images/btn-scale.svg);
+  width: 36px;
+  height: 36px;
+  background-position:center;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.scale-icon:hover {
+  transform: scale(0.98);
+}
+.video {
+  position: relative;
+}
+
+.video-play-big-btn {
+  position: absolute;
+  margin-top: -427px;
+  margin-left: 610px;
+  cursor: pointer;
+  
+}
+.video-play-big-btn:hover {
+  filter: invert(58%) sepia(11%) saturate(1082%) hue-rotate(
+356deg) brightness(91%) contrast(85%);
+}
+
+.video-content:hover {
+  transform: scale(1.01);
+}
+
 
 .video-player {
   display: flex;
@@ -794,48 +927,11 @@ text-align: left;
   transform: scale(0.98);
 }
 
-.progress {
-  background: linear-gradient(to right, #710707 0%, #710707 54%, #C4C4C4 54%, #C4C4C4 100%);
-  height: 8px;
-  background-size: cover;
- 
-  width: 60.1vw;
-  outline: none;
-  transition: background 450ms ease-in;
-  -webkit-appearance: none;
-  
-}
-
-.progress::-webkit-slider-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  -webkit-appearance: none;
-  cursor: pointer;
-  background: #FFFFFF;
-}
 
 
-.volume-icon {
-  background:url(./images/volume.svg);
-  background-size: cover;
-  width: 38px;
-  height: 31px;
-  background-position:center;
-  cursor: pointer;
-  background-color: transparent;
-  
-}
 
-.progress-volume {
-  background: linear-gradient(to right, #710707 0%, #710707 50%, #C4C4C4 50%, #C4C4C4 100%);
-  height: 8px;
-  width: 10vw;
-  outline: none;
-  transition: background 450ms ease-in;
-  -webkit-appearance: none;
-  
-}
+
+
 
 .progress-volume::-webkit-slider-thumb {
   width: 15px;

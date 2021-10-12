@@ -1,27 +1,6 @@
 
 import adaptstyle from '/styles/adaptivestyle.css';
-AOS.init({
-  // Global settings:
-  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-  initClassName: 'aos-init', // class applied after initialization
-  animatedClassName: 'aos-animate', // class applied on animation
-  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-  
 
-  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-  offset: 100, // offset (in px) from the original trigger point
-  delay: 0, // values from 0 to 3000, with step 50ms
-  duration: 600, // values from 0 to 3000, with step 50ms
-  easing: 'ease', // default easing for AOS animations
-  once: false, // whether animation should happen only once - while scrolling down
-  mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-
-});
 
 //welcome slider
 const progress = document.querySelector('.progress');
@@ -95,17 +74,6 @@ swiper.on("slideChange", (function() {
     document.getElementById("swiper-fraction-current").textContent = `0${swiper.realIndex + 1}`
 }
 ));
-//FRACTION
-/* let allSlides = document.querySelector('.swiper-fraction-total');
-let mySliderCurrentSlide = document.querySelector('.swiper-fraction-current');
-let imageSlider = document.querySelector('.swiper');
-let slides =
-
-allSlides.innerHTML = imageSlider.slides.length;
-imageSlider.on('slideChange', function () {
-  let currentSlide = ++imageSlider.realIndex;
-  mySliderCurrentSlide.innerHTML = currentSlide
-}) */
 
 
 
@@ -139,15 +107,28 @@ function closeMenu () {
 gamburger();
 
 
-progress.addEventListener('input', function() {
-  const value = this.value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
-})
+AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 
-progressVolume.addEventListener('input', function() {
-    const value = this.value;
-    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
-  })
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 100, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 600, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+});
+
   
   function show()
 	{
@@ -184,7 +165,215 @@ close();
   });
   
 
-  //Art gallery
+  
+//VIDEO
+
+  const video = document.querySelector('.video');
+  const playBtn = document.querySelector('.video-play');
+  const playBigBtn = document.querySelector('.video-play-big-btn');
+  const wrappOfBtnPlay = document.querySelector('.button-control');
+  const time = document.querySelector('.control-time');
+  const mute = document.querySelector('.volume-icon');
+  
+  const fullscreenbtn = document.querySelector('.scale-icon');
+  
+  //progress volume
+  mute.onclick = vidmute;
+  function vidmute(){
+    if(video.muted){
+      video.muted = false;
+      mute.classList.remove('muteon');
+    } else {
+      video.muted = true;
+      mute.classList.toggle('muteon');
+    }
+  }
+  
+ 
+
+  progressVolume.oninput = videoVolume;
+  function videoVolume() {
+  video.volume = this.value/100;
+  
+  if(video.volume > 0){
+    mute.style.backgroundImage = "url(./images/btn-volume.svg)";
+  } else {
+    mute.style.backgroundImage = "url(./images/mute.svg)";
+  }
+    const value = this.value;
+    this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
+  
+  }
+  
+  //progress video
+  progress.oninput = setProgress;
+  function setProgress() {
+    video.currentTime = (progress.value * video.duration) / 100;
+    progress.value = (video.currentTime / video.duration) * 100
+    
+    progress.style.background = `linear-gradient(to right, #710707 0%, #710707 ${progress.value}%, #C4C4C4 ${progress.value}%, grey 100%)`
+  }
+  
+  
+  
+    //timer
+   function updateProgress(){
+     progress.value = (video.currentTime / video.duration) * 100
+  
+     //minutes
+      let minutes = Math.floor(video.currentTime / 60);
+      if(minutes < 10) {
+        minutes = '0' + String(minutes)
+      }
+     //seconds
+     let seconds = Math.floor(video.currentTime % 60)
+     if(seconds < 10) {
+      seconds = '0' + String(seconds)
+    }
+  
+     time.innerHTML = `${minutes}:${seconds}`
+   }
+  
+  
+    //play & pause
+  playBtn.onclick = updateToggle;
+    function updateToggle() {
+      if (video.paused) {
+       playBtn.style.backgroundImage = "url(./images/btn-play-mini.svg)";
+       playBigBtn.style.display = 'block';
+      } else if (video.play) {
+        playBtn.style.backgroundImage = "url(./images/pause.svg)";
+        playBigBtn.style.display = 'none';
+        video.playbackRate =1;
+      }
+    }
+  
+   function togglePlay() {
+     const method = video.paused ? 'play' : 'pause';
+     video[method]()
+   }
+  
+  //rewind
+  
+  progress.onclick = videoRewind;
+  function videoRewind(event) {
+    let w = this.offsetWidth;
+    let o = event.offsetX;
+    this.value = 100 * o/w;
+    video.pause();
+    video.currentTime = video.duration * (o/w)
+  }
+   
+  
+  //keyboard events
+  
+  document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+      const method = video.paused ? 'play' : 'pause';
+     video[method]()
+    } 
+    if(e.keyCode == 77) {
+      video.muted = !video.muted;
+      
+    }
+    if(e.keyCode == 70) {
+      if(toggleFullScreen() == false) {
+        toggleFullScreen()
+      } if (document.exitFullscreen) {
+        document.exitFullscreen()
+      }
+    }
+    if(e.keyCode == 188 & e.shiftKey ) {
+      video.play();
+      video.playbackRate = 1.5;
+    }
+    if(e.keyCode == 190 & e.shiftKey ) {
+      video.play();
+      video.playbackRate = 0.5;
+      
+    }
+   
+}
+
+
+
+  document.documentElement.addEventListener('keydown', function (e) {
+    if ( ( e.keycode || e.which ) == 32) {
+        e.preventDefault();
+    }
+}, false);
+
+
+   //fullscreen
+
+   function toggleFullScreen(){
+    if(video.requestFullScreen){
+      video.requestFullScreen();
+    } else if(video.webkitRequestFullScreen){
+      video.webkitRequestFullScreen();
+    } else if(video.mozRequestFullScreen){
+      video.mozRequestFullScreen();
+    }
+  }
+
+
+ //EXPLORE
+ 
+ const exploreGallery = document.querySelector('.explore-slider');
+ const topExploreSlide = document.querySelector('.expl-img');
+ const exploreSlider = document.querySelector('.explore-slider input');
+ const bottomExploreSlide = document.querySelector('.explore-bottom-image');
+ 
+
+ exploreSlider.addEventListener('input', 
+ function(){
+  topExploreSlide.style.width = this.value + '%'
+ })
+
+ 
+  fullscreenbtn.addEventListener("click",toggleFullScreen,false);
+  playBtn.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+  playBigBtn.addEventListener('click', togglePlay);
+  video.addEventListener('play', updateToggle);
+  video.addEventListener('pause', updateToggle);
+  video.addEventListener('timeupdate', updateProgress);
+  progress.addEventListener('change', setProgress) 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* let images = [];
   for (let i = 1; i < 16; i++) {
@@ -262,112 +451,3 @@ animOnScroll() */
   }) */
 
 
-
-/* 
-const video = document.querySelector('.video');
-const progress = document.querySelector('.progress');
-const progressVolume = document.querySelector('.progress-volume');
-const playBtn = document.querySelector('.video-play');
-const playBigBtn = document.querySelector('.video-play-big-btn');
-const wrappOfBtnPlay = document.querySelector('.button-control');
-const time = document.querySelector('.control-time');
-const mute = document.querySelector('.volume-icon') 
-
-//progress volume
-
-progressVolume.oninput = videoVolume;
-function videoVolume() {
-video.volume = this.value/100;
-
-if(video.volume > 0){
-  mute.style.backgroundImage = "url(./images/svg/btn-volume.svg)";
-} else {
-  mute.style.backgroundImage = "url(./images/svg/mute.svg)";
-}
-  const value = this.value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
-
-}
-
-//progress video
-progress.oninput = setProgress;
-function setProgress() {
-  video.currentTime = (progress.value * video.duration) / 100
-  const value = this.value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #C4C4C4 ${value}%, grey 100%)`
-}
-
-
-
-  //timer
- function updateProgress(){
-   progress.value = (video.currentTime / video.duration) * 100
-
-   //minutes
-    let minutes = Math.floor(video.currentTime / 60);
-    if(minutes < 10) {
-      minutes = '0' + String(minutes)
-    }
-   //seconds
-   let seconds = Math.floor(video.currentTime % 60)
-   if(seconds < 10) {
-    seconds = '0' + String(seconds)
-  }
-
-   time.innerHTML = `${minutes}:${seconds}`
- }
-
-
-  //play & pause
-playBtn.onclick = updateToggle;
-  function updateToggle() {
-    if (video.paused) {
-     playBtn.style.backgroundImage = "url(./images/svg/btn-play-mini.svg)";
-     playBigBtn.style.display = 'block';
-    } else if (video.play) {
-      playBtn.style.backgroundImage = "url(./images/svg/pause.svg)";
-      playBigBtn.style.display = 'none';
-      
-    }
-  }
-
- function togglePlay() {
-   const method = video.paused ? 'play' : 'pause';
-   video[method]()
- }
-
-//rewind
-
-progress.onclick = videoRewind;
-function videoRewind(event) {
-  let w = this.offsetWidth;
-  let o = event.offsetX;
-  this.value = 100 * o/w;
-  video.pause();
-  video.currentTime = video.duration * (o/w)
-}
- 
-
-//keyboard events
-
-document.body.onkeyup = function(e){
-  if(e.keyCode == 32){
-    const method = video.paused ? 'play' : 'pause';
-   video[method]()
-  } 
-  if(e.keyCode == 77) {
-    video.muted = !video.muted;
-    
-  }
-}
-
-
-
-
-playBtn.addEventListener('click', togglePlay);
-video.addEventListener('click', togglePlay);
-playBigBtn.addEventListener('click', togglePlay);
-video.addEventListener('play', updateToggle);
-video.addEventListener('pause', updateToggle);
-video.addEventListener('timeupdate', updateProgress);
-progress.addEventListener9('change', setProgress) */
