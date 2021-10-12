@@ -1942,10 +1942,9 @@ input[type=time] {
   line-height: 50px;
 }
 
-.map {
-  width: 100%;
-  max-width: 960px;
-  height: auto
+#map {
+  width: 960px;
+  height: 620px
 }
 
 /* footer */
