@@ -685,39 +685,32 @@ text-align: left;
 
 .explore-slider {
   position: relative;
-  
+  display: flex;
+  background: url(./images/after.jpg) no-repeat; 
+  width: 720px;
 }
-.explore-image {
-  margin-top: 14px;
-  max-width: 720px;
-  width: 100%;
-  height: auto;
+.explore-slider input {
+  -webkit-appearance: none;
+  width: 720px;
+  background: none;
   position: relative;
-  z-index: 1;
-  
 }
-
-.explore-bottom-image {
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 14px;
-  max-width: 720px;
-  width: 100%;
-}
-
-.explore-slider-img {
-  background-image: url(./images/explore-slider.svg);
-  background-size: cover;
-  position: absolute;
-  z-index: 2;
-  top: 14px;
-  right: 260px;
-  height: 700px;
+.explore-slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
   width: 39px;
-  cursor: pointer;
-}
+  height: 710px;
+  background: url(./images/explore-slider.svg) no-repeat;
+  cursor: e-resize;
 
+}
+.expl-img {
+  position: absolute;
+  left: 0;
+  background: url(./images/before.jpg) no-repeat; 
+  width: 60%;
+  height: 710px;
+  background-size: 47vw;
+}
 
 /* video */
 video {

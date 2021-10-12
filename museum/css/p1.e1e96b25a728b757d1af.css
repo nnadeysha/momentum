@@ -313,9 +313,7 @@
       justify-content: center;
       margin-top: 48px;
     }
-    .explore-slider-img {
-      right: 392px
-    }
+    
 
 
     /* video */
@@ -886,9 +884,7 @@ letter-spacing: 3px;
       height: 100%;
       background-image: url(../images/explore-slider-768w.svg);
     }
-    .explore-image,
-    .explore-top-image,
-    .explore-bottom-image {
+    .gallery-resize {
       max-width: 734px;
       width: 100%;
       max-height: 705px;
