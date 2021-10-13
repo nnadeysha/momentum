@@ -389,15 +389,15 @@
               <div class="exposition">
                 <h4 class="exposition-title">Ticket Type</h4>
                 <label class=" exposition-label exposition-label-permanent">Permanent exhibition
-                  <input id="tickets-buy-input" type="radio" checked="checked" name="radio" value="20">
+                  <input id="tickets-buy-input" type="radio" checked="checked" name="radio1" value="20">
                   <span class="checkmark"></span>
                 </label>
                 <label class="exposition-label exposition-label-temporary">Temporary exhibition
-                  <input id="tickets-buy-input" type="radio" name="radio" value="25">
+                  <input id="tickets-buy-input" type="radio" name="radio2" value="25">
                   <span class="checkmark"></span>
                 </label>
                 <label class="exposition-label exposition-label-combined">Combined Admission
-                  <input id="tickets-buy-input" type="radio" name="radio" value="40">
+                  <input id="tickets-buy-input" type="radio" name="radio3" value="40">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -411,7 +411,7 @@
                     <button type="button" class="bt_minus" id="tickets-buy-input" onclick="this.nextElementSibling.stepDown()">
                       <svg viewBox="0 0 20 20"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <input type="number" value="1" class="quantity basic" id="tickets-buy-input" min="0" max="20" readonly>
+                    <input name="basic" type="number" value="1" class="quantity basic" id="tickets-buy-input" min="0" max="20" readonly>
                     <button type="button" class="bt_plus"  id="tickets-buy-input" onclick="this.previousElementSibling.stepUp()">
                       <svg viewBox="0 0 20 20"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
@@ -424,7 +424,8 @@
                     <button type="button" class="bt_minus" id="tickets-buy-input" onclick="this.nextElementSibling.stepDown()">
                       <svg viewBox="0 0 20 20"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>
-                    <input type="number" value="1" class="quantity senior" id="tickets-buy-input" min="0" max="20" readonly>
+                    <input name="senior" type="number" value="1" class="quantity senior" id="tickets-buy-input" min="0" max="20" readonly>
+                    
                     <button type="button" class="bt_plus" id="tickets-buy-input" onclick="this.previousElementSibling.stepUp()">
                       <svg viewBox="0 0 20 20"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     </button>

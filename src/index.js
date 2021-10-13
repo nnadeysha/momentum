@@ -356,81 +356,92 @@ const basicTypeTicket = document.querySelector('.basic');
 const total = document.querySelector('.total');
 const inputsTickets = document.querySelectorAll('#tickets-buy-input');
 const minus = document.querySelector('.bt_minus');
-const radioType = document.querySelectorAll('input[name="radio"]');
+const radioType = document.querySelectorAll('input[type="radio"]');
 
-/*  function SUMTICKET(){
-  if(permanentTypeTicket.checked){
-     typeOfTicket += 20;
-  }
-  if(temporaryTypeTicket.checked){
-    typeOfTicket += 25;
- }
- if(combinedTypeTicket.checked){
-  typeOfTicket += 40;
-}
-return typeOfTicket;
-} */
- 
+let totalPrice;
 
-
-/* function TOTALSUMSENIOR() {
-  if(seniorTypeTicket.value >= 1 && permanentTypeTicket.checked) {
-    sumS += 10;
-  }
-  if(seniorTypeTicket.value >= 1 && temporaryTypeTicket.checked) {
-     sumS += 12.5;
-  } 
-  if(seniorTypeTicket.value >= 1 && combinedTypeTicket.checked) {
-    sumS += 20;
-  } 
+let calculate = () => {
   
-  return parseInt(seniorTypeTicket.value)*sumS
-}
-function TOTALSUMBASIC() {
-  if(basicTypeTicket.value >= 1 && permanentTypeTicket.checked) {
-     sumB += 20;
-  }
-  if(basicTypeTicket.value >= 1 && temporaryTypeTicket.checked) {
-    sumB += 25;
-  } 
-  if(basicTypeTicket.value >= 1 && combinedTypeTicket.checked) {
-    sumB += 40;
-  } 
-  
-  return parseInt(basicTypeTicket.value)*sumB;
-} */
-
-function calculate() {
-  let totalPrice;
-
   for(const radio of radioType) {
     if(radio.checked){
       totalPrice = (parseInt(seniorTypeTicket.value)*parseInt(radio.value))/2 + parseInt(basicTypeTicket.value)*parseInt(radio.value)
     }
   }
-  console.log(totalPrice)
   total.innerHTML = `Total: €${totalPrice}`;
   
 }
 
 
-calculate()
+ 
 
 for (const inputTicket of inputsTickets){
   
   inputTicket.addEventListener('click', function() {
-    calculate()
+    calculate();
+    localStorage.setItem('seniorTypeTicket', (seniorTypeTicket.value).toString());
+    localStorage.setItem('basicTypeTicket', (basicTypeTicket.value).toString());
+    localStorage.setItem('Total', (totalPrice).toString());
   });
   
-}
+};
 
+/* calculate.addEventListener('change', function(){
+  localStorage.setItem('Total', (calculate).toString());
+}) */
+
+//LOCALST
+
+const inputLS = document.querySelectorAll('.tickets-buy input');
+console.log(inputLS)
+
+for(let i = 0; i < inputLS.length; i++){
+  inputLS[i].addEventListener('change', changeHandler)
+};
+
+function changeHandler() {
+  if(this.type == 'radio'){
+    localStorage.setItem(this.name, this.checked)
+  }
+};
+
+document.querySelector('input[name="radio1"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio2');
+  localStorage.removeItem('radio3');
+  document.querySelector('input[name="radio2"]').checked = false;
+  document.querySelector('input[name="radio3"]').checked = false;
+})
+document.querySelector('input[name="radio2"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio1');
+  localStorage.removeItem('radio3');
+  document.querySelector('input[name="radio1"]').checked = false;
+  document.querySelector('input[name="radio3"]').checked = false;
+})
+document.querySelector('input[name="radio3"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio1');
+  localStorage.removeItem('radio2');
+  document.querySelector('input[name="radio1"]').checked = false;
+  document.querySelector('input[name="radio2"]').checked = false;
+})
+
+function checkStor (){
+  for(let i = 0; i < inputLS.length; i++){
+    if(inputLS[i].type === 'radio'){
+      inputLS[i].checked = localStorage.getItem(inputLS[i].name)
+    } else {
+      seniorTypeTicket.value =parseFloat(localStorage.getItem('seniorTypeTicket'));
+      basicTypeTicket.value =parseFloat(localStorage.getItem('basicTypeTicket'));
+      total.innerHTML= `Total: €${parseFloat(localStorage.getItem('Total'))}`;   
+    }
+    
+  }
+}
+checkStor()
 
 console.log(`
-Ваша оценка - 95 баллов 
+Ваша оценка - 97 баллов 
 Отзыв по пунктам ТЗ:
 Не выполненные:
 видеогалерея не выполнена, сам видеоплеер сделан полностью кроме окрашивания полосы прогресбара видео, что указано ниже.
-Секция Tickets: не выполнено сохранение данных при перезагрузке, остальные 2 пункта выполнены.
 Секция Калькулятор продажи билетов в форме продажи билетов не выполнен совсем, соответственно не выполнена и Валидация формы.
 
 Остальные пункты выполнены, смотрите ниже.
