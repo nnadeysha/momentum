@@ -1,15 +1,11 @@
 
 import adaptstyle from '/styles/adaptivestyle.css';
-
+import {TicketForm} from '/form.js'
 
 //welcome slider
 const progress = document.querySelector('.progress');
 const progressVolume = document.querySelector('.progress-volume');
-const buyBtn = document.querySelector('.buy-button');
-const closeBtn = document.querySelector('.form-close-button');
-const form = document.querySelector('.form-wrapper');
-const overlay = document.querySelector('.overlay');
-const bookBtn = document.querySelector('.booking-button')
+
 const burger = document.querySelector('.burger'),
       nav = document.querySelector('.header-navigation'),
       navList = document.querySelector('.nav-list'),
@@ -130,40 +126,7 @@ AOS.init({
 });
 
   
-  function show()
-	{
-    buyBtn.addEventListener('click', () => {
-      form.classList.toggle('active');
-       
-      overlay.style.display = 'block'; 
-    })
-	};
-function close() {
-  closeBtn.addEventListener('click', () => {
-    form.classList.remove('active');
-    overlay.style.display = 'none'; 
-  })
-  
-} 
-show();
-close();
-  let ripple;
-  bookBtn.addEventListener('click', e => {
-    const left = e.clientX - e.target.getBoundingClientRect().left;
-    const top = e.clientY - e.target.getBoundingClientRect().top;
-    
-
-    ripple = document.createElement('div');
-    ripple.classList.add("ripple")
-    ripple.style.left = `${left}px`;
-    ripple.style.top = `${top}px`;
-    bookBtn.prepend(ripple);
-  });
-
-  bookBtn.addEventListener('mouseleave', () => {
-   bookBtn.removeChild(ripple)
-  });
-  
+ 
 
   
 //VIDEO
@@ -183,9 +146,11 @@ close();
     if(video.muted){
       video.muted = false;
       mute.classList.remove('muteon');
+      mute.style.backgroundImage = "url(./images/btn-volume.svg)";
     } else {
       video.muted = true;
       mute.classList.toggle('muteon');
+      mute.style.backgroundImage = "url(./images/mute.svg)";
     }
   }
   
@@ -319,10 +284,8 @@ close();
 
  //EXPLORE
  
- const exploreGallery = document.querySelector('.explore-slider');
  const topExploreSlide = document.querySelector('.expl-img');
  const exploreSlider = document.querySelector('.explore-slider input');
- const bottomExploreSlide = document.querySelector('.explore-bottom-image');
  
 
  exploreSlider.addEventListener('input', 
@@ -348,15 +311,22 @@ close();
 
 //TICKETS
 
-const permanentTypeTicket = document.querySelector('.exposition-label-permanent input');//20 10
-const temporaryTypeTicket = document.querySelector('.exposition-label-temporary input');//25 12,5
-const combinedTypeTicket = document.querySelector('.exposition-label-combined input');// 40 20
+const overlay = document.querySelector(".overlay");
+
+const buyBtn = document.querySelector(".buy-button");
+
+const ticketForm = new TicketForm(overlay);
+
+buyBtn.onclick = () => ticketForm.show();
+
 const seniorTypeTicket = document.querySelector('.senior');
 const basicTypeTicket = document.querySelector('.basic');
 const total = document.querySelector('.total');
 const inputsTickets = document.querySelectorAll('#tickets-buy-input');
-const minus = document.querySelector('.bt_minus');
 const radioType = document.querySelectorAll('input[type="radio"]');
+
+
+
 
 let totalPrice;
 
@@ -435,7 +405,14 @@ function checkStor (){
     
   }
 }
-checkStor()
+checkStor();
+
+
+
+
+
+
+
 
 console.log(`
 Ваша оценка - 97 баллов 
