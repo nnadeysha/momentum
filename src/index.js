@@ -1,20 +1,23 @@
 
 import adaptstyle from '/styles/adaptivestyle.css';
-import {TicketForm} from '/form.js'
+import {TicketForm} from '/form.js';
+import { VideoPlayer } from './videoplayer.js';
+/* import {slideWidthChange} from './explore-slider.js';
+slideWidthChange(); */
+import { ExploreSlider } from './explore-slider.js';
+const expSl = document.querySelector('.explore-slider');
+new ExploreSlider(expSl)
 
 //welcome slider
-const progress = document.querySelector('.progress');
-const progressVolume = document.querySelector('.progress-volume');
+
 
 const burger = document.querySelector('.burger'),
       nav = document.querySelector('.header-navigation'),
       navList = document.querySelector('.nav-list'),
       links = document.querySelectorAll('.link'),
       welcomeTitle = document.querySelector('.welcome');
-const galleryImgContainer = document.querySelector('.flex-inner-gallery');
 const welcomeWrapper = document.querySelector('.welcome-wrapper');
 const mainMenu768 = document.querySelector('.main-menu-768w');
-
 
 
 
@@ -130,11 +133,163 @@ AOS.init({
 
   
 //VIDEO
+document.documentElement.addEventListener(
+        "keydown",
+        function (e) {
+          if ((e.keycode || e.which) == 32) {
+            e.preventDefault();
+          }
+        },
+        false
+      );
+      
+let player = new VideoPlayer(video)
+player.init()
 
+
+ //EXPLORE
+ 
+ 
+ 
+
+//TICKETS
+
+const overlay = document.querySelector(".overlay");
+
+const buyBtn = document.querySelector(".buy-button");
+
+const ticketForm = new TicketForm(overlay);
+
+buyBtn.onclick = () => ticketForm.show(totalPrice, seniorTypeTicket);
+
+const seniorTypeTicket = document.querySelector('.senior');
+const basicTypeTicket = document.querySelector('.basic');
+const total = document.querySelector('.total');
+const inputsTickets = document.querySelectorAll('#tickets-buy-input');
+const radioType = document.querySelectorAll('input[type="radio"]');
+
+
+let totalPrice;
+
+let calculate = () => {
+  
+  for(const radio of radioType) {
+    if(radio.checked){
+      totalPrice = (parseInt(seniorTypeTicket.value)*parseInt(radio.value))/2 + parseInt(basicTypeTicket.value)*parseInt(radio.value)
+    }
+  }
+  total.innerHTML = `Total: €${totalPrice}`;
+  
+}
+
+
+for (const inputTicket of inputsTickets){
+  
+  inputTicket.addEventListener('click', function() {
+    calculate();
+    localStorage.setItem('seniorTypeTicket', (seniorTypeTicket.value).toString());
+    localStorage.setItem('basicTypeTicket', (basicTypeTicket.value).toString());
+    localStorage.setItem('Total', (totalPrice).toString());
+  });
+  
+};
+
+
+//LOCALST
+
+const inputLS = document.querySelectorAll('.tickets-buy input');
+console.log(inputLS)
+
+for(let i = 0; i < inputLS.length; i++){
+  inputLS[i].addEventListener('change', changeHandler)
+};
+
+function changeHandler() {
+  if(this.type == 'radio'){
+    localStorage.setItem(this.name, this.checked)
+  }
+};
+
+document.querySelector('input[name="radio1"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio2');
+  localStorage.removeItem('radio3');
+  document.querySelector('input[name="radio2"]').checked = false;
+  document.querySelector('input[name="radio3"]').checked = false;
+})
+document.querySelector('input[name="radio2"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio1');
+  localStorage.removeItem('radio3');
+  document.querySelector('input[name="radio1"]').checked = false;
+  document.querySelector('input[name="radio3"]').checked = false;
+})
+document.querySelector('input[name="radio3"]').addEventListener('click', (e) => {
+  localStorage.removeItem('radio1');
+  localStorage.removeItem('radio2');
+  document.querySelector('input[name="radio1"]').checked = false;
+  document.querySelector('input[name="radio2"]').checked = false;
+})
+
+function checkStor (){
+  for(let i = 0; i < inputLS.length; i++){
+    if(inputLS[i].type === 'radio'){
+      inputLS[i].checked = localStorage.getItem(inputLS[i].name)
+    } else {
+      seniorTypeTicket.value =parseFloat(localStorage.getItem('seniorTypeTicket'));
+      basicTypeTicket.value =parseFloat(localStorage.getItem('basicTypeTicket'));
+      totalPrice=parseFloat(localStorage.getItem('Total'));
+      total.innerHTML= `Total: €${totalPrice}`;   
+      
+    }
+    
+  }
+}
+checkStor();
+
+
+
+//разбить на модули не бол 100 строк
+
+
+
+
+
+
+
+
+
+
+
+
+  /* let images = [];
+  for (let i = 1; i < 16; i++) {
+    let img = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
+    images.push(img)
+  }
+  
+  let i = 0, arr = [], temp;
+  
+  while (arr.length < 15) {
+    temp = Math.trunc(Math.random() * 15 + 1);
+    if (!arr.includes(temp)) {
+      arr.push(temp);
+    };
+  }
+  let randomImages = [];
+  for (let i = 0; i < 15; i++) {
+    randomImages.push(images[arr[i] - 1])
+  }
+  
+  galleryImgContainer.innerHTML = randomImages.join('');
+   */
+
+  //art gallery surfacing
+
+  
+
+/* 
   const video = document.querySelector('.video');
   const playBtn = document.querySelector('.video-play');
   const playBigBtn = document.querySelector('.video-play-big-btn');
-  const wrappOfBtnPlay = document.querySelector('.button-control');
   const time = document.querySelector('.control-time');
   const mute = document.querySelector('.volume-icon');
   
@@ -279,273 +434,16 @@ AOS.init({
     } else if(video.mozRequestFullScreen){
       video.mozRequestFullScreen();
     }
+
   }
-
-
- //EXPLORE
- 
- const topExploreSlide = document.querySelector('.expl-img');
- const exploreSlider = document.querySelector('.explore-slider input');
- 
-
- exploreSlider.addEventListener('input', 
- function(){
-  topExploreSlide.style.width = this.value + '%'
- })
-
-
-
-
-
+  
+  
   fullscreenbtn.addEventListener("click",toggleFullScreen,false);
-  playBtn.addEventListener('click', togglePlay);
-  video.addEventListener('click', togglePlay);
-  playBigBtn.addEventListener('click', togglePlay);
-  video.addEventListener('play', updateToggle);
-  video.addEventListener('pause', updateToggle);
-  video.addEventListener('timeupdate', updateProgress);
-  progress.addEventListener('change', setProgress) 
-
- 
-
-
-//TICKETS
-
-const overlay = document.querySelector(".overlay");
-
-const buyBtn = document.querySelector(".buy-button");
-
-const ticketForm = new TicketForm(overlay);
-
-buyBtn.onclick = () => ticketForm.show();
-
-const seniorTypeTicket = document.querySelector('.senior');
-const basicTypeTicket = document.querySelector('.basic');
-const total = document.querySelector('.total');
-const inputsTickets = document.querySelectorAll('#tickets-buy-input');
-const radioType = document.querySelectorAll('input[type="radio"]');
-
-
-
-
-let totalPrice;
-
-let calculate = () => {
-  
-  for(const radio of radioType) {
-    if(radio.checked){
-      totalPrice = (parseInt(seniorTypeTicket.value)*parseInt(radio.value))/2 + parseInt(basicTypeTicket.value)*parseInt(radio.value)
-    }
-  }
-  total.innerHTML = `Total: €${totalPrice}`;
-  
-}
-
-
- 
-
-for (const inputTicket of inputsTickets){
-  
-  inputTicket.addEventListener('click', function() {
-    calculate();
-    localStorage.setItem('seniorTypeTicket', (seniorTypeTicket.value).toString());
-    localStorage.setItem('basicTypeTicket', (basicTypeTicket.value).toString());
-    localStorage.setItem('Total', (totalPrice).toString());
-  });
-  
-};
-
-/* calculate.addEventListener('change', function(){
-  localStorage.setItem('Total', (calculate).toString());
-}) */
-
-//LOCALST
-
-const inputLS = document.querySelectorAll('.tickets-buy input');
-console.log(inputLS)
-
-for(let i = 0; i < inputLS.length; i++){
-  inputLS[i].addEventListener('change', changeHandler)
-};
-
-function changeHandler() {
-  if(this.type == 'radio'){
-    localStorage.setItem(this.name, this.checked)
-  }
-};
-
-document.querySelector('input[name="radio1"]').addEventListener('click', (e) => {
-  localStorage.removeItem('radio2');
-  localStorage.removeItem('radio3');
-  document.querySelector('input[name="radio2"]').checked = false;
-  document.querySelector('input[name="radio3"]').checked = false;
-})
-document.querySelector('input[name="radio2"]').addEventListener('click', (e) => {
-  localStorage.removeItem('radio1');
-  localStorage.removeItem('radio3');
-  document.querySelector('input[name="radio1"]').checked = false;
-  document.querySelector('input[name="radio3"]').checked = false;
-})
-document.querySelector('input[name="radio3"]').addEventListener('click', (e) => {
-  localStorage.removeItem('radio1');
-  localStorage.removeItem('radio2');
-  document.querySelector('input[name="radio1"]').checked = false;
-  document.querySelector('input[name="radio2"]').checked = false;
-})
-
-function checkStor (){
-  for(let i = 0; i < inputLS.length; i++){
-    if(inputLS[i].type === 'radio'){
-      inputLS[i].checked = localStorage.getItem(inputLS[i].name)
-    } else {
-      seniorTypeTicket.value =parseFloat(localStorage.getItem('seniorTypeTicket'));
-      basicTypeTicket.value =parseFloat(localStorage.getItem('basicTypeTicket'));
-      total.innerHTML= `Total: €${parseFloat(localStorage.getItem('Total'))}`;   
-    }
-    
-  }
-}
-checkStor();
-
-
-
-
-
-
-
-
-console.log(`
-Ваша оценка - 97 баллов 
-Отзыв по пунктам ТЗ:
-Не выполненные:
-видеогалерея не выполнена, сам видеоплеер сделан полностью кроме окрашивания полосы прогресбара видео, что указано ниже.
-Секция Калькулятор продажи билетов в форме продажи билетов не выполнен совсем, соответственно не выполнена и Валидация формы.
-
-Остальные пункты выполнены, смотрите ниже.
-
-Частично выполненные пункты:
-1) прогресс-бар отображает прогресс проигрывания видео, только не окрашивается
-
-Выполненные пункты:
-1) есть возможность перелистывания слайдов влево и вправо кликами по стрелкам 
-
-2) есть возможность перелистывания слайдов влево и вправо свайпами (движениями) мышки 
-
-3) есть возможность перелистывания слайдов кликами по буллетам (квадратики внизу слайдера) 
-
-4) слайды перелистываются плавно с анимацией смещения вправо или влево 
-
-5) перелистывание слайдов бесконечное (зацикленное) 
-
-6) при перелистывании слайдов буллет активного слайда подсвечивается (выделяется стилем) 
-
-7) при перелистывании слайдов кликами или свайпами меняется номер активного слайда 
-
-8) даже при частых кликах или свайпах нет ситуации, когда слайд после перелистывания находится не по центру, нет ситуации, когда видны одновременно два слайда 
-
-9) при клике по кнопке "Play" слева внизу на панели видео начинается проигрывание видео, иконка кнопки при этом меняется на "Pause", большая кнопка "Play" по центру видео исчезает. Повторный клик на кнопку останавливает проигрывание видео, иконка меняется на первоначальную, большая кнопка "Play" по центру видео снова отображается 
-
-10) при клике по большой кнопке "Play" по центру видео, или при клике по самому видео, начинается проигрывание видео, иконка кнопки "Play" слева внизу на панели видео меняется на "Pause", большая кнопка "Play" по центру видео исчезает. Клик на видео, которое проигрывается, останавливает проигрывание видео, иконка кнопки "Play" слева внизу на панели видео меняется на первоначальную, большая кнопка "Play" по центру видео снова отображается 
-
-11) перетягивание ползунка прогресс-бара позволяет изменить время с которого проигрывается видео 
-
-12) если прогресс-бар перетянуть до конца, видео останавливается, соответственно, меняется внешний вид кнопок "Play" 
-
-13) при клике на иконку динамика происходит toggle звука и самой иконки (звук включается или выключается, соответственно изменяется иконка) 
-
-14) при перемещении ползунка громкости звука изменяется громкость видео 
-
-15) если ползунок громкости звука перетянуть до 0, звук выключается, иконка динамика становится зачеркнутой 
-
-16) если при выключенном динамике перетянуть ползунок громкости звука от 0, звук включается, иконка громкости перестаёт быть зачёркнутой 
-
-17) при нажатии на кнопку fullscreen видео переходит в полноэкранный режим, при этом видео и панель управления разворачиваются во весь экран. При нажатии на кнопку fullscreen повторно видео выходит из полноэкранного режима. Нажатие на клавишу для выхода из полноэкранного режима Esc не проверяем и не оцениваем 
-
-18) клавиша Пробел — пауза, при повторном нажатии - play 
-
-19) Клавиша M (англ) — отключение/включение звука 
-
-20) Клавиша F — включение/выключение полноэкранного режима 
-
-21) Клавиши SHIFT+, (англ) — ускорение воспроизведения ролика 
-
-22) Клавиши SHIFT+. (англ) — замедление воспроизведения ролика 
-
-23) ползунок можно перетягивать мышкой по горизонтали 
-
-24) ползунок никогда не выходит за границы картины 
-
-25) при перемещении ползунка справа налево плавно появляется нижняя картина 
-
-26) при перемещении ползунка слева направо плавно появляется верхняя картина 
-
-27) при обновлении страницы ползунок возвращается в исходное положение 
-
-28) при прокрутке страницы вниз появление картин секции Galery сопровождается анимацией: изображения плавно поднимаются снизу вверх, увеличиваясь и создавая эффект выплывания. В качестве образца анимации используйте анимацию на сайте Лувра https://www.louvre.fr/ 
-
-29) если прокрутить страницу вверх и затем снова прокручивать вниз, анимация появления картин повторяется 
-
-30) при обновлении страницы, если она к тому моменту была прокручена до секции Galery, анимация картин повторяется 
-
-31) при изменении количества билетов Basic и Senior пересчитывается общая цена за них 
-
-32) у каждого типа билетов своя цена (20 €, 25 €, 40 € для Basic и половина этой стоимости для Senior). При изменении типа билета пересчитывается общая цена за них 
-
-33) в секции Contacts добавлена интерактивная карта 
-
-34) на карте отображаются маркеры, расположение и внешний вид маркеров соответствует макету 
-
-35) стиль карты соответствует макету 
-
-`)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* let images = [];
-  for (let i = 1; i < 16; i++) {
-    let img = `<img src="images/gallery/galery${i}.jpg" alt="gallery${i}">`
-    images.push(img)
-  }
-  
-  let i = 0, arr = [], temp;
-  
-  while (arr.length < 15) {
-    temp = Math.trunc(Math.random() * 15 + 1);
-    if (!arr.includes(temp)) {
-      arr.push(temp);
-    };
-  }
-  let randomImages = [];
-  for (let i = 0; i < 15; i++) {
-    randomImages.push(images[arr[i] - 1])
-  }
-  
-  galleryImgContainer.innerHTML = randomImages.join('');
-   */
-
-  //art gallery surfacing
-
-  
-
+playBtn.addEventListener('click', togglePlay);
+video.addEventListener('click', togglePlay);
+playBigBtn.addEventListener('click', togglePlay);
+video.addEventListener('play', updateToggle);
+video.addEventListener('pause', updateToggle);
+video.addEventListener('timeupdate', updateProgress);
+progress.addEventListener('change', setProgress) 
+*/
