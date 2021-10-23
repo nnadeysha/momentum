@@ -1,17 +1,41 @@
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-transform: uppercase;
-  background-color: #363636;
+*{
+    padding: 0;
+    margin: 0;
 }
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    /* отображаем курсор в виде руки при наведении; некоторые
+    считают, что необходимо оставлять стрелочный вид для кнопок */
+    cursor: pointer;
+}
+.wrapper { 
+    
+width: 100%;
+height: 720px;
+background-color: antiquewhite;
 
-h1 { color: #e6c300; }
-
-img {
-  width: 90vw;
-  max-width: 256px;
+}
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+transition: all .5s ease;
+}
+.prev-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.next-button{
+position: absolute;
+background-image: url(./assets/svg/slider-next.svg);
+width: 60px;
+height: 60px;
+top: 0
 }
