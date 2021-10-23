@@ -2,9 +2,9 @@
 import "./style.css";
 
 /* import { MomentumModel } from "./momentum-model"; */
-import {RandomBackground} from "./momentum";
+import {Momentum} from "./momentum";
 let main = document.querySelector<HTMLElement>('#momentum')
 
-const momentum = new RandomBackground(main)
+const momentum = new Momentum(main)
 
 /* window.addEventListener("load", ); */
