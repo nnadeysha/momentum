@@ -1,6 +1,13 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+body {
+  min-width: 480px;
+  min-height: 100vh;
+  transition: 1s ease-in-out;
+  
 }
 button {
   padding: 0;
@@ -12,18 +19,24 @@ button {
 }
 .wrapper {
   position: relative;
-  width: 100vw;
+}
+.section,
+main {
   height: 100vh;
-  background-color: antiquewhite;
-
 }
 .background {
   position: relative;
-  width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: all 0.5s ease;
+  background-image: url("https://raw.githubusercontent.com/irinainina/ready-projects/momentum/momentum/assets/images/night/17.jpg")
+      center/cover,
+    rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  -moz-transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
   z-index: 0;
 }
 .prev-button {
@@ -43,46 +56,118 @@ button {
   top: 50%;
   right: 0;
   transition: all 0.5s ease;
- 
 }
 .next-button:hover,
-.prev-button:hover {
+.prev-button:hover,
+.player-prev-btn:hover,
+.player-play-btn:hover,
+.player-next-btn:hover,
+.player-pause-btn:hover {
   transform: scale(0.95);
   opacity: 0.5;
 }
 
 .time-date-block {
-display: flex;
-flex-direction: column;
-z-index: 10;
-position: relative;
-margin: 0 auto;
-max-width: 600px;
-width: 100%;
-top: -500px;
-color: #fff;
-text-align: center;
-/* text-decoration: underline #fff; */
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+  top: -500px;
+  color: #fff;
+  text-align: center;
+  /* text-decoration: underline #fff; */
 }
 .date {
-    font-size: 40px;
-    
+  font-size: 40px;
 }
 .time {
-    font-size: 100px;
+  font-size: 100px;
 }
 
-.greeting-wrapper{
-    display: flex;
-    justify-content: center;
-    font-size: 32px;
-   
+.greeting-wrapper {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
 }
 
-.input-name {
-    background: rgb(24%, 23%, 23%, .3);
-    border: transparent;
-   text-align: center;
-    font-size: 32px;
-    color: #fff;
+.input-name,
+.city-input {
+  background: rgb(24%, 23%, 23%, 0.3);
+  border: transparent;
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+}
+.city-input {
+  font-size: 24px;
+  text-align: left;
+  width: 100%;
+  max-width: 150px;
+  margin-top: 25px;
+}
+
+.weather-wrapper {
+  position: relative;
+  top: -900px;
+  left: 87vw;
+  width: 100%;
+  max-width: 200px;
+  color: #fff;
+  
+}
+.weather-img {
+  font-size: 84px;
+  width: 40px;
+  height: 40px;
+}
+.weather-description {
+  width: 90%;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+}
+.weather-description,
+.weather-humidity,
+.weather-wind {
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.8;
+}
+.weather-temperature {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 44px;
+}
+
+.player-wrapper {
+  position: relative;
+  top: -1200px;
+  left: 0;
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  
+  background: rgb(24%, 23%, 23%, 0.3);
+}
+.player-prev-btn{
+  background-image: url(./assets/svg/play-prev.svg);
+}
+.player-play-btn{
+  background-image: url(./assets/svg/play.svg);
+}
+.player-next-btn{
+  background-image: url(./assets/svg/play-next.svg);
+}
+.player-pause-btn{
+  background-image: url(./assets/svg/pause.svg);
+  display: none;
+}
+.player-prev-btn,
+.player-play-btn,
+.player-next-btn,
+.player-pause-btn {
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  transition: all 0.5s ease;
 }

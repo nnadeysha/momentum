@@ -3,14 +3,23 @@ import Control from "./control";
 export class Momentum extends Control {
   randomBackgraund: RandomBackground;
   timeAndDate: TimeDate;
+  weather: Weather;
+  player: Player;
+  wrapper: Momentum;
   //greeting: Greeting;
   constructor(parentNode: HTMLElement) {
     super(parentNode);
+    this.wrapper = new Momentum(this.node)
     this.randomBackgraund = new RandomBackground(this.node);
+    this.weather = new Weather(this.node);
     this.timeAndDate = new TimeDate(this.node);
+    this.player = new Player(this.node);
+
     //this.greeting = new Greeting(this.node)
     window.onload = () => {
       //this.randomBackgraund.update();
+      this.weather.getCityToLocalStorage();
+      this.weather.getWeather();
       this.randomBackgraund.randomImage();
       this.timeAndDate.timeDateUpdate();
       this.timeAndDate.gritingUpdate();
@@ -23,15 +32,21 @@ export class RandomBackground extends Control {
 
   nextBtn: Control<HTMLButtonElement>;
   background: Control<HTMLDivElement>;
+  
 
   constructor(parentNode: HTMLElement) {
-    super(parentNode, "div", "wrapper");
+    super(parentNode, "section");
+   
     this.background = new Control(this.node, "div", "background");
     this.prevBtn = new Control(this.node, "button", "prev-button");
 
     this.nextBtn = new Control(this.node, "button", "next-button");
-    this.nextBtn.node.onclick = () => {/* this.update();  */this.randomImage()};
-    this.prevBtn.node.onclick = () => {/* this.update(); */ this.randomImage()};
+    this.nextBtn.node.onclick = () => {
+       this.randomImage();
+    };
+    this.prevBtn.node.onclick = () => {
+      this.randomImage();
+    };
   }
 
   async update() {
@@ -46,27 +61,133 @@ export class RandomBackground extends Control {
     }
   }
 
-  randomImage(){
-    /* "url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/evening/18.jpg')"; */
+  randomImage() {
     const date = new Date();
     const hours = date.getHours();
 
-    const timesDay = ['night', 'morning', 'afternoon', 'evening'];
+    const timesDay = ["night", "morning", "afternoon", "evening"];
     const TimeOfDay = () => timesDay[Math.floor(hours / 6)];
     let min = 1;
-    let max =20
-    const getRandomArbitrary = ()=> {
+    let max = 20;
+    const getRandomArbitrary = () => {
       return Math.floor(Math.random() * (max - min) + min);
-    }
+    };
     function addZero(number: number) {
       return number < 10 ? `0${number}` : number;
     }
-    const randomNumber = addZero(getRandomArbitrary())
+    const randomNumber = addZero(getRandomArbitrary());
 
-    console.log(`url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${TimeOfDay()}/${randomNumber}.jpg')`)
-    this.background.node.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${TimeOfDay()}/${randomNumber}.jpg')`
+    console.log(
+      `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${TimeOfDay()}/${randomNumber}.jpg')`
+    );
+    this.background.node.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${TimeOfDay()}/${randomNumber}.jpg')`;
   }
-  
+}
+
+export class Player extends Control {
+  playerControl: HTMLDivElement;
+  playerPrevBtn: Control<HTMLButtonElement>;
+  playerPlayBtn: Control<HTMLButtonElement>;
+  playerNextBtn: Control<HTMLButtonElement>;
+  playerPauseBtn: Control<HTMLButtonElement>;
+
+  constructor(parentNode: HTMLElement) {
+    super(parentNode, "section", "player-wrapper");
+
+    const playerControl = new Control(this.node, "div", "player-control");
+    this.playerPrevBtn = new Control(
+      playerControl.node,
+      "button",
+      "player-prev-btn"
+    );
+    this.playerPlayBtn = new Control(
+      playerControl.node,
+      "button",
+      "player-play-btn"
+    );
+    this.playerPauseBtn = new Control(
+      playerControl.node,
+      "button",
+      "player-pause-btn"
+    );
+    this.playerNextBtn = new Control(
+      playerControl.node,
+      "button",
+      "player-next-btn"
+    );
+  }
+}
+
+export class Weather extends Control {
+  weatherImg: Control<HTMLElement>;
+  weatherTemperature: Control<HTMLSpanElement>;
+  weatherDescription: Control<HTMLParagraphElement>;
+  weatherWind: Control<HTMLParagraphElement>;
+  weatherHumidity: Control<HTMLParagraphElement>;
+  cityInput: Control<HTMLInputElement>;
+
+  constructor(parentNode: HTMLElement) {
+    super(parentNode, "section", "weather-wrapper");
+    const weatherBlock = new Control(this.node, "div", "weather-block");
+    this.weatherTemperature = new Control(
+      weatherBlock.node,
+      "span",
+      "weather-temperature"
+    );
+    this.weatherImg = new Control(weatherBlock.node, "i", "weather-img owf");
+    this.weatherDescription = new Control(
+      this.node,
+      "p",
+      "weather-description"
+    );
+    this.weatherWind = new Control(this.node, "p", "weather-wind");
+    this.weatherHumidity = new Control(this.node, "p", "weather-humidity");
+    //humidity
+    this.cityInput = new Control(this.node, "input", "city-input");
+    this.cityInput.node.placeholder = "Your city";
+    this.cityInput.node.type = "text";
+    this.cityInput.node.maxLength = 20;
+
+    this.cityInput.node.oninput = () => {
+      this.getWeather();
+      this.setCityToLocalStorage();
+    };
+  }
+  setCityToLocalStorage() {
+    localStorage.setItem("city", this.cityInput.node.value);
+  }
+  getCityToLocalStorage() {
+    this.cityInput.node.value = localStorage.getItem("city");
+  }
+  async getWeather() {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput.node.value}&lang=ru&appid=acc15865bcf9f67a7111310944bdfafe&units=metric`;
+
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      this.weatherImg.node.classList.add(`owf-${jsonData.weather[0].id}`);
+      this.weatherTemperature.node.textContent = `${Math.floor(
+        jsonData.main.temp
+      )}°C`;
+      this.weatherDescription.node.textContent =
+        jsonData.weather[0].description;
+      this.weatherWind.node.textContent = `${Math.floor(
+        jsonData.wind.speed
+      )} m/s - wind speed`;
+      this.weatherHumidity.node.textContent = `${Math.floor(
+        jsonData.main.humidity
+      )} % - humidity`;
+
+      console.log(
+        jsonData.weather[0].id,
+        jsonData.weather[0].description,
+        jsonData.main.temp,
+        jsonData.main.humidity
+      );
+    } catch (error) {
+      console.log("error" + error);
+    }
+  }
 }
 
 export class TimeDate extends Control {
@@ -77,19 +198,17 @@ export class TimeDate extends Control {
   inputName: Control<HTMLInputElement>;
   greetingWrapper: Control<HTMLDivElement>;
   constructor(parentNode: HTMLElement) {
-    super(parentNode, "div", "time-date-block");
+    super(parentNode, "section", "time-date-block");
     this.time = new Control(this.node, "div", "time");
     this.date = new Control(this.node, "div", "date");
     const greetingWrapper = new Control(this.node, "div", "greeting-wrapper");
     this.greeting = new Control(greetingWrapper.node, "div", "greeting");
     this.inputName = new Control(greetingWrapper.node, "input", "input-name"); //тут надо инпуту контент задать еще, типа value
-    this.inputName.node.value = "Enter name";
+    this.inputName.node.placeholder = "Enter name";
     this.inputName.node.type = "text";
-    this.inputName.node.maxLength = 20
+    this.inputName.node.maxLength = 20;
 
-
-    this.inputName.node.oninput =() =>this.setNameToLocalStorage()
-
+    this.inputName.node.oninput = () => this.setNameToLocalStorage();
   }
 
   timeDateUpdate() {
@@ -131,20 +250,19 @@ export class TimeDate extends Control {
     setInterval(this.timeDateUpdate.bind(this), 1000);
   }
 
-  setNameToLocalStorage(){
-    localStorage.setItem('name', this.inputName.node.value);
-    
+  setNameToLocalStorage() {
+    localStorage.setItem("name", this.inputName.node.value);
   }
-  getNameToLocalStorage(){
-    this.inputName.node.value = localStorage.getItem('name');
+  getNameToLocalStorage() {
+    this.inputName.node.value = localStorage.getItem("name");
   }
   gritingUpdate() {
     const date = new Date();
     const hours = date.getHours();
-    const timesDay = ['night', 'morning', 'afternoon', 'evening'];
+    const timesDay = ["night", "morning", "afternoon", "evening"];
     const TimeOfDay = () => timesDay[Math.floor(hours / 6)];
-    this.greeting.node.textContent = `Good ${TimeOfDay()}`
-   /*  if (hours >= 0 && hours <= 6) {
+    this.greeting.node.textContent = `Good ${TimeOfDay()}`;
+    /*  if (hours >= 0 && hours <= 6) {
       return (this.greeting.node.textContent = `Good ${getTimeOfDay}`);
     }
     if (hours > 9 && hours <= 12) {
@@ -156,23 +274,6 @@ export class TimeDate extends Control {
     if (hours > 18 && hours <= 23) {
       return (this.greeting.node.textContent = `Good ${getTimeOfDay}`);
     } */
-  }
-
-}
-
-export class ButtonsChangeBack extends Control {
-  constructor(parentNode: HTMLElement) {
-    super(parentNode);
-  }
-}
-export class Player extends Control {
-  constructor(parentNode: HTMLElement) {
-    super(parentNode);
-  }
-}
-export class Weather extends Control {
-  constructor(parentNode: HTMLElement) {
-    super(parentNode);
   }
 }
 
