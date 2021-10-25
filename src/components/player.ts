@@ -19,7 +19,12 @@ export class Player extends Control {
   playerPlayBtn: Control<HTMLButtonElement>;
   playerNextBtn: Control<HTMLButtonElement>;
   playerPauseBtn: Control<HTMLButtonElement>;
-  playList: Control<HTMLDivElement>;
+  playList: Control<HTMLUListElement>;
+  song1: Control<HTMLLIElement>;
+  song2: Control<HTMLLIElement>;
+  song3: Control<HTMLLIElement>;
+  song4: Control<HTMLLIElement>;
+  
 
   /* song: string;
   songIndex: number;
@@ -75,7 +80,12 @@ export class Player extends Control {
       "button",
       "player-next-btn"
     );
-    this.playList = new Control(this.node, "div", "play-list");
+    this.playList = new Control(this.node, "ul", "play-list");
+    this.song1 = new Control(this.playList.node, "li", "play-list-song song1", "Aqua Caelestis");
+    this.song2 = new Control(this.playList.node, "li", "play-list-song song2", "Ennio Morricone");
+    this.song3 = new Control(this.playList.node, "li", "play-list-song song3", "River Flows In You");
+    this.song4 = new Control(this.playList.node, "li", "play-list-song song4", "Summer Wind")
+    
 
     this.loadSong(songs[songIndex]);
 
@@ -87,17 +97,19 @@ export class Player extends Control {
       }
     };
     this.audio.node.ontimeupdate = () => {
-      this.updateProgress()
-      this.updateAudioTime()
+      this.updateProgress();
+      this.updateAudioTime();
     };
     this.playerNextBtn.node.onclick = () => {
       this.nextSong();
-      this.updateProgress()
-      this.updateAudioTime()};
+      this.updateProgress();
+      this.updateAudioTime();
+    };
     this.playerPrevBtn.node.onclick = () => {
       this.prevSong();
-      this.updateProgress()
-      this.updateAudioTime()};
+      this.updateProgress();
+      this.updateAudioTime();
+    };
   }
 
   loadSong(song: string) {
@@ -134,21 +146,19 @@ export class Player extends Control {
   }
 
   updateProgress() {
-   /*  this.progress.value =
+    /*  this.progress.value =
       (this.audio.node.currentTime / this.audio.node.duration) * 100; */
-    
 
-    
     let value = (this.audio.node.currentTime / this.audio.node.duration) * 100;
     this.progress.node.value = `${value}`;
   }
-  updateAudioTime(){
+  updateAudioTime() {
     let minutes = addZero(Math.floor(this.audio.node.currentTime / 60));
     let seconds = addZero(Math.floor(this.audio.node.currentTime % 60));
     function addZero(number: number) {
       return number < 10 ? `0${number}` : number;
     }
-    this.audioTime.node.innerHTML = `${minutes}:${seconds}`;
+    this.audioTime.node.innerHTML = `${minutes} : ${seconds}`;
   }
 }
 

@@ -5,7 +5,8 @@ class Control<NodeType extends HTMLElement = HTMLElement> {
     parentNode: HTMLElement | null,
     tagName = "div",
     className = "",
-    content = ""
+    content = "",
+    
   ) {
     const el = document.createElement(tagName);
     el.className = className;

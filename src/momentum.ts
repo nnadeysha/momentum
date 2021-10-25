@@ -14,7 +14,7 @@ export class Momentum extends Control {
     super(parentNode);
 /*     this.wrapper = new Momentum(this.node)
  */    this.randomBackgraund = new RandomBackground(parentNode);
- this.randomBackgraund.randomImage();
+ //this.randomBackgraund.randomImage();
  const header = new Control(this.randomBackgraund.node, "header", "header")
     this.weather = new Weather(header.node);
     this.player = new Player(header.node);
@@ -24,7 +24,7 @@ export class Momentum extends Control {
 
     //this.greeting = new Greeting(this.node)
 /*     window.onload = () => {
- */      //this.randomBackgraund.update();
+ */   this.randomBackgraund.update();
       this.weather.getCityToLocalStorage();
       this.weather.getWeather();
       
