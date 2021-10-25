@@ -5,9 +5,8 @@
 }
 body {
   min-width: 480px;
-  min-height: 100vh;
+  height: 100vh;
   transition: 1s ease-in-out;
-  
 }
 button {
   padding: 0;
@@ -17,45 +16,43 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
-.wrapper {
-  position: relative;
+.header {
+  display: flex;
+  align-items:flex-start;
+  justify-content: space-between;
 }
-.section,
-main {
-  height: 100vh;
+.main {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 }
 .background {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://raw.githubusercontent.com/irinainina/ready-projects/momentum/momentum/assets/images/night/17.jpg")
+  /*  background-image: url("https://raw.githubusercontent.com/irinainina/ready-projects/momentum/momentum/assets/images/night/17.jpg")
       center/cover,
-    rgba(0, 0, 0, 0.5);
+    rgba(0, 0, 0, 0.5); */
   background-blend-mode: multiply;
-  -moz-transition: all 1s ease-in-out;
-  -webkit-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
   z-index: 0;
 }
-.prev-button {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  background-image: url(./assets/svg/slider-prev.svg);
-  width: 60px;
-  height: 60px;
-  transition: all 0.5s ease;
-}
+.prev-button,
 .next-button {
   position: absolute;
-  background-image: url(./assets/svg/slider-next.svg);
+  top: 50%;
+  transition: all 0.5s ease;
   width: 50px;
   height: 60px;
-  top: 50%;
+}
+.prev-button {
+  left: 0;
+  background-image: url(./assets/svg/slider-prev.svg);
+}
+.next-button {
+  background-image: url(./assets/svg/slider-next.svg);
   right: 0;
-  transition: all 0.5s ease;
 }
 .next-button:hover,
 .prev-button:hover,
@@ -75,7 +72,7 @@ main {
   margin: 0 auto;
   max-width: 600px;
   width: 100%;
-  top: -500px;
+
   color: #fff;
   text-align: center;
   /* text-decoration: underline #fff; */
@@ -86,7 +83,13 @@ main {
 .time {
   font-size: 100px;
 }
-
+.time-wrapper {
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+}
 .greeting-wrapper {
   display: flex;
   justify-content: center;
@@ -111,12 +114,9 @@ main {
 
 .weather-wrapper {
   position: relative;
-  top: -900px;
-  left: 87vw;
   width: 100%;
   max-width: 200px;
   color: #fff;
-  
 }
 .weather-img {
   font-size: 84px;
@@ -137,37 +137,88 @@ main {
 .weather-temperature {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 44px;
+  color: #fff;
+  width: 200px;
 }
 
 .player-wrapper {
   position: relative;
-  top: -1200px;
-  left: 0;
   width: 100%;
-  max-width: 300px;
+  max-width: 230px;
   height: 300px;
-  
+  border-radius: 30px;
   background: rgb(24%, 23%, 23%, 0.3);
 }
-.player-prev-btn{
+.player-title {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  text-decoration: underline #fff;
+}
+.current-song {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.6;
+}
+.progress-container {
+  background: #e4e9ed;
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.progress {
+  background: rgb(71, 71, 71);
+  border-radius: 5px;
+  height: 6px;
+  width: 100%;
+}
+/* .progress::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: #FFFFFF;
+} */
+.player-prev-btn {
   background-image: url(./assets/svg/play-prev.svg);
 }
-.player-play-btn{
-  background-image: url(./assets/svg/play.svg);
-}
-.player-next-btn{
+
+.player-next-btn {
   background-image: url(./assets/svg/play-next.svg);
 }
-.player-pause-btn{
+.player-play-btn {
+  background-image: url(./assets/svg/play.svg);
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  transition: all 0.5s ease;
+}
+
+.play {
   background-image: url(./assets/svg/pause.svg);
-  display: none;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  transition: all 0.5s ease;
 }
 .player-prev-btn,
-.player-play-btn,
-.player-next-btn,
-.player-pause-btn {
+.player-next-btn {
   background-size: cover;
   width: 40px;
   height: 40px;
   transition: all 0.5s ease;
+}
+
+.player-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 190px;
+  width: 100%;
+  margin: 0 auto;
 }
