@@ -125,21 +125,25 @@ export class Player extends Control {
     this.playerPlayBtn.node.onclick = () => {
       if (this.playerPlayBtn.node.classList.contains("play")) {
         this.pauseSong();
+        
       } else {
         this.playSong();
         this.updateProgress();
         this.updateAudioTime();
+        
       }
     };
     this.audio.node.ontimeupdate = () => {
       this.updateProgress();
       this.updateAudioTime();
+     
     };
     this.playerNextBtn.node.onclick = () => {
       
-        this.nextSong();
+      this.nextSong();
       this.updateAudioTime();
       this.updateProgress();
+      
       
       
       
@@ -148,6 +152,7 @@ export class Player extends Control {
       this.prevSong();
       this.updateProgress();
       this.updateAudioTime();
+      
     };
     this.progress.node.oninput = () => this.handProgress();
   }
@@ -156,6 +161,23 @@ export class Player extends Control {
     this.currentSong.node.innerHTML = song;
 
     this.audio.node.src = `./assets/audio/${song}.mp3`;
+  if(song == "Aqua Caelestis"){ this.song4.node.classList.remove('active-song');
+  this.song2.node.classList.remove('active-song')
+    this.song1.node.classList.add('active-song')};
+    if(song == "Ennio Morricone"){ this.song1.node.classList.remove('active-song')
+    this.song3.node.classList.remove('active-song')
+    this.song4.node.classList.remove('active-song')
+    this.song2.node.classList.add('active-song')}
+    if(song == "River Flows In You"){ this.song1.node.classList.remove('active-song')
+    this.song2.node.classList.remove('active-song')
+    this.song4.node.classList.remove('active-song')
+    this.song3.node.classList.add('active-song')}
+    if(song == "Summer Wind"){this.song1.node.classList.remove('active-song')
+    this.song3.node.classList.remove('active-song')
+    this.song2.node.classList.remove('active-song')
+    this.song4.node.classList.add('active-song')}
+    
+   
   }
 
   handProgress() {
@@ -204,16 +226,20 @@ export class Player extends Control {
   updateAudioTime() {
     let minutes = addZero(Math.floor(this.audio.node.currentTime / 60));
     let seconds = addZero(Math.floor(this.audio.node.currentTime % 60));
+    let minutesDur = addZero(Math.floor(this.audio.node.duration/ 60));
+    let secondsDur = addZero(Math.floor(this.audio.node.duration % 60));
     function addZero(number: number) {
       return number < 10 ? `0${number}` : number;
     }
     this.audioTime.node.innerHTML = `${minutes} : ${seconds}`;
-
+    this.audioTimeDuration.node.innerHTML = `${minutesDur} : ${secondsDur}`
     /* let minutes = Math.floor(this.audio.node.currentTime / 60) || 0;
     let seconds = (this.audio.node.currentTime - minutes * 60) || 0;
     this.audioTime.node.innerHTML = minutes + ':' + (Number(seconds.toFixed(0)) < 10 ? '0' : '') + seconds.toFixed(0); */
     setInterval(this.updateAudioTime.bind(this), 1000);
   }
+ 
+
  
 }
 
