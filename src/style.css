@@ -2,11 +2,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* transition: all 0.5s ease; */
 }
 body {
   min-width: 480px;
   height: 100vh;
-  transition: 1s ease-in-out;
+  
   color: #fff;
 }
 button {
@@ -21,6 +22,8 @@ button {
   display: flex;
   align-items:flex-start;
   justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .main {
   display: flex;
@@ -104,6 +107,15 @@ button {
   text-align: center;
   font-size: 32px;
   color: #fff;
+  border-bottom: #fff 1px solid;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+}
+.input-name:hover,
+.city-input:hover
+{
+  background: rgba(184, 78, 78, 0.6);
+  
 }
 .city-input {
   font-size: 24px;
@@ -111,18 +123,27 @@ button {
   width: 100%;
   max-width: 150px;
   margin-top: 25px;
+  
 }
 
 .weather-wrapper {
   position: relative;
   width: 100%;
   max-width: 200px;
+  height: 350px;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgb(24%, 23%, 23%, 0.3);
+  border-radius: 30px;
 }
 .weather-img {
   font-size: 84px;
   width: 40px;
   height: 40px;
+  opacity: 1;
 }
 .weather-description {
   width: 90%;
@@ -165,14 +186,16 @@ button {
   opacity: 0.6;
   margin-bottom: 20px;
 }
-.audio-time {
+.audio-time,
+.audio-time-duration
+ {
   
   text-align: center;
-  margin-bottom: 20px;
+  
 }
 .progress-container {
   background: #e4e9ed;
-  width: 100%;
+  width: 230px;
   height: 10px;
   cursor: pointer;
   display: flex;
@@ -180,19 +203,13 @@ button {
   margin-bottom: 20px;
 }
 .progress {
-  background: rgb(71, 71, 71);
+  
   border-radius: 5px;
   height: 6px;
   width: 100%;
+  
 }
-/* .progress::-webkit-slider-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  -webkit-appearance: none;
-  cursor: pointer;
-  background: #FFFFFF;
-} */
+
 .player-prev-btn {
   background-image: url(./assets/svg/play-prev.svg);
 }
@@ -241,4 +258,15 @@ button {
 }
 .song-active {
   opacity: 0.8;
+}
+
+.play-list-song:hover{
+ color: gold;
+ opacity: 0.5;
+ cursor: pointer;
+}
+
+.active-song {
+  color: gold;
+ opacity: 1;
 }

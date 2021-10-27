@@ -1,9 +1,9 @@
 import Control from "../control";
 let songs = [
-  "AquaCaelestis",
-  "EnnioMorricone",
-  "RiverFlowsInYou",
-  "SummerWind",
+  "Aqua Caelestis",
+  "Ennio Morricone",
+  "River Flows In You",
+  "Summer Wind",
 ];
 
 let songIndex = 0;
@@ -11,6 +11,7 @@ export class Player extends Control {
   playerTitle: Control<HTMLDivElement>;
   currentSong: Control<HTMLDivElement>;
   audio: Control<HTMLAudioElement>;
+  audioSource: Control<HTMLSourceElement>;
   progressContainer: Control<HTMLDivElement>;
   progress: Control<HTMLInputElement>;
   audioTime: Control<HTMLParagraphElement>;
@@ -24,7 +25,10 @@ export class Player extends Control {
   song2: Control<HTMLLIElement>;
   song3: Control<HTMLLIElement>;
   song4: Control<HTMLLIElement>;
-  
+  audioTimeDuration: Control<HTMLParagraphElement>;
+
+  songTrigger: Control<HTMLSpanElement>;
+  song: Control<HTMLLIElement>;
 
   /* song: string;
   songIndex: number;
@@ -47,6 +51,9 @@ export class Player extends Control {
       "Aqua Caelestis"
     );
     this.audio = new Control(this.node, "audio", "audio");
+    this.audioSource = new Control(this.audio.node, "source", "audio-src");
+    this.audioSource.node.type = "audio/mpeg";
+    this.audioSource.node.src = "";
     //this.audio.node.src = "./assets/sounds/AquaCaelestis.mp3"
     this.progressContainer = new Control(
       this.node,
@@ -59,10 +66,17 @@ export class Player extends Control {
       "progress"
     );
     this.progress.node.type = "range";
-    this.progress.node.max = "100";
+    this.progress.node.max = `${this.audio.node.duration}`;
     this.progress.node.min = "0";
+    this.progress.node.step = "1";
     this.progress.node.value = "0";
-    this.audioTime = new Control(this.node, "p", "audio-time", "00:00");
+    this.audioTimeDuration = new Control(
+      this.node,
+      "p",
+      "audio-time-duration",
+      "00:00"
+    );
+    this.audioTime = new Control(this.node, "p", "audio-time");
     const playerControl = new Control(this.node, "div", "player-control");
     this.playerPrevBtn = new Control(
       playerControl.node,
@@ -81,11 +95,30 @@ export class Player extends Control {
       "player-next-btn"
     );
     this.playList = new Control(this.node, "ul", "play-list");
-    this.song1 = new Control(this.playList.node, "li", "play-list-song song1", "Aqua Caelestis");
-    this.song2 = new Control(this.playList.node, "li", "play-list-song song2", "Ennio Morricone");
-    this.song3 = new Control(this.playList.node, "li", "play-list-song song3", "River Flows In You");
-    this.song4 = new Control(this.playList.node, "li", "play-list-song song4", "Summer Wind")
-    
+    this.song1 = new Control(
+      this.playList.node,
+      "li",
+      "play-list-song song1",
+      "Aqua Caelestis"
+    );
+    this.song2 = new Control(
+      this.playList.node,
+      "li",
+      "play-list-song song2",
+      "Ennio Morricone"
+    );
+    this.song3 = new Control(
+      this.playList.node,
+      "li",
+      "play-list-song song3",
+      "River Flows In You"
+    );
+    this.song4 = new Control(
+      this.playList.node,
+      "li",
+      "play-list-song song4",
+      "Summer Wind"
+    );
 
     this.loadSong(songs[songIndex]);
 
@@ -94,6 +127,8 @@ export class Player extends Control {
         this.pauseSong();
       } else {
         this.playSong();
+        this.updateProgress();
+        this.updateAudioTime();
       }
     };
     this.audio.node.ontimeupdate = () => {
@@ -101,15 +136,20 @@ export class Player extends Control {
       this.updateAudioTime();
     };
     this.playerNextBtn.node.onclick = () => {
-      this.nextSong();
-      this.updateProgress();
+      
+        this.nextSong();
       this.updateAudioTime();
+      this.updateProgress();
+      
+      
+      
     };
     this.playerPrevBtn.node.onclick = () => {
       this.prevSong();
       this.updateProgress();
       this.updateAudioTime();
     };
+    this.progress.node.oninput = () => this.handProgress();
   }
 
   loadSong(song: string) {
@@ -117,11 +157,19 @@ export class Player extends Control {
 
     this.audio.node.src = `./assets/audio/${song}.mp3`;
   }
+
+  handProgress() {
+    //this.progress.node.value = (this.audio.node.currentTime / this.audio.node.duration *100).toString();
+    this.audio.node.currentTime =
+      (Number(this.progress.node.value) * this.audio.node.duration) / 100;
+  }
   //src/assets/sounds/Aqua Caelestis.mp3
 
   playSong() {
     this.playerPlayBtn.node.classList.add("play");
     this.audio.node.play();
+    this.updateProgress();
+    this.updateAudioTime();
   }
   pauseSong() {
     this.playerPlayBtn.node.classList.remove("play");
@@ -146,11 +194,12 @@ export class Player extends Control {
   }
 
   updateProgress() {
-    /*  this.progress.value =
-      (this.audio.node.currentTime / this.audio.node.duration) * 100; */
+    
 
     let value = (this.audio.node.currentTime / this.audio.node.duration) * 100;
     this.progress.node.value = `${value}`;
+    setInterval(this.updateProgress.bind(this), 1000);
+   
   }
   updateAudioTime() {
     let minutes = addZero(Math.floor(this.audio.node.currentTime / 60));
@@ -159,9 +208,28 @@ export class Player extends Control {
       return number < 10 ? `0${number}` : number;
     }
     this.audioTime.node.innerHTML = `${minutes} : ${seconds}`;
+
+    /* let minutes = Math.floor(this.audio.node.currentTime / 60) || 0;
+    let seconds = (this.audio.node.currentTime - minutes * 60) || 0;
+    this.audioTime.node.innerHTML = minutes + ':' + (Number(seconds.toFixed(0)) < 10 ? '0' : '') + seconds.toFixed(0); */
+    setInterval(this.updateAudioTime.bind(this), 1000);
   }
+ 
 }
 
+ /* const progresPercent =
+      (this.audio.node.currentTime / this.audio.node.duration) * 100;
+    this.progress.node.style.width = `${progresPercent}%`; */
+
+/*  this.progress.value =
+      (this.audio.node.currentTime / this.audio.node.duration) * 100; */
+
+
+ /* getTrackOfPlaylist(){
+   if(){
+      this.song1.node.classList.add('active-song');
+   }
+  } */
 /* let progresPercent = ((this.audio.node.currentTime/this.audio.node.duration) * 100)*2;
   this.progress.node.style.width = `${progresPercent}%` */
 

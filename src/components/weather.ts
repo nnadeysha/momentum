@@ -30,8 +30,15 @@ export class Weather extends Control {
       this.cityInput.node.maxLength = 20;
   
       this.cityInput.node.oninput = () => {
-        this.getWeather();
-        this.setCityToLocalStorage();
+        if(!this.weatherTemperature){
+          alert( 'Error')
+          
+        }else{
+          this.getWeather();
+          this.setCityToLocalStorage();
+        }
+        
+        
       };
     }
 
@@ -45,7 +52,7 @@ export class Weather extends Control {
       this.cityInput.node.value = localStorage.getItem("city");
     }
     async getWeather(/* city:string */) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput.node.value}&lang=ru&appid=acc15865bcf9f67a7111310944bdfafe&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityInput.node.value}&lang=en&appid=acc15865bcf9f67a7111310944bdfafe&units=metric`;
   
       try {
         const response = await fetch(url);
